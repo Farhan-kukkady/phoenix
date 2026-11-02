@@ -125,6 +125,38 @@ function generateLocalResponse(
       .slice(0, 3);
   };
 
+  // Case 0: Contact info / Phone / Email / Address / Location
+  if (
+    q.includes("contact") ||
+    q.includes("phone") ||
+    q.includes("number") ||
+    q.includes("call") ||
+    q.includes("email") ||
+    q.includes("address") ||
+    q.includes("location") ||
+    q.includes("office") ||
+    q.includes("headquarter") ||
+    q.includes("reach") ||
+    q.includes("whatsapp")
+  ) {
+    return {
+      reply: `You can reach Phoenix Colour Technologies directly through our regional headquarters or via our direct customer channels:
+
+### Contact Details:
+- **Phone & WhatsApp**: **+971 50 754 4559**
+- **Email**: **sales@phoenixtecsol.com**
+
+### Office Addresses:
+- **Dubai Headquarters (UAE)**:  
+  PO Box 391759, Warehouse 3B Plot No 368-0140, Behind Hyundai Showroom, Al Quoz 3, Dubai, UAE
+- **India Office (Navi Mumbai)**:  
+  Farb CMS Tech LLP, #1301, 13th Floor, CBD 61 Four Greenscape Shakti V, Plot No.12, Sector 15, CBD Belapur, Navi Mumbai, Maharashtra-400614, India
+
+Our engineers serve clients across the UAE, Saudi Arabia, the GCC, and Africa. Feel free to message us on WhatsApp or call our Dubai team directly!`,
+      recommendedProducts: [],
+    };
+  }
+
   // Case 1: Color accuracy / portable spectrophotometer
   if (
     q.includes("accuracy") ||
