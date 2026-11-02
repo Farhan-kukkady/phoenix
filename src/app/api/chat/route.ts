@@ -157,6 +157,28 @@ Our engineers serve clients across the UAE, Saudi Arabia, the GCC, and Africa. F
     };
   }
 
+  // Case 0b: Working hours / operating timings / schedule
+  if (
+    q.includes("hour") ||
+    q.includes("timing") ||
+    q.includes("schedule") ||
+    q.includes("working") ||
+    q.includes("when are you open") ||
+    q.includes("open")
+  ) {
+    return {
+      reply: `Our official office and technical support hours are:
+
+### Operating & Support Hours:
+- **Monday – Friday**: 8:00 AM – 6:00 PM (GST)
+- **Saturday**: 9:00 AM – 2:00 PM (Emergency Dispatch & Technical Support)
+- **Sunday**: Closed
+
+For urgent technical assistance outside standard hours, our engineering desk can be reached directly via WhatsApp at **+971 50 754 4559**.`,
+      recommendedProducts: [],
+    };
+  }
+
   // Case 1: Color accuracy / portable spectrophotometer
   if (
     q.includes("accuracy") ||

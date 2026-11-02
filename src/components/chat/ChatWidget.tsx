@@ -41,7 +41,7 @@ export function ChatWidget() {
       id: "welcome",
       role: "assistant",
       content:
-        "Hello! I am **Phoenix Color Intelligence AI**, your technical color consultant.\n\nAsk me anything about color measurement, spectrophotometers, ISO 12647 / G7 standardization, or tell me your application (e.g. *\"I need an instrument for color accuracy on flexible packaging\"*) to see instant product recommendations.",
+        "Hello! I am **Phoenix**, your Color Intelligence AI and technical consultant.\n\nAsk me anything about color measurement, spectrophotometers, ISO 12647 / G7 standardization, or tell me your application (e.g. *\"I need an instrument for color accuracy on flexible packaging\"*) to see instant product recommendations.",
     },
   ]);
 
@@ -136,7 +136,7 @@ export function ChatWidget() {
             className="hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-full border border-slate-200 shadow-lg text-xs font-semibold text-slate-800 hover:text-[rgb(196,30,58)] hover:border-[rgb(196,30,58)] transition-all cursor-pointer animate-fade-in"
           >
             <Sparkles className="w-3.5 h-3.5 text-[rgb(196,30,58)] animate-pulse" />
-            <span>Chat with Color AI</span>
+            <span>Chat with Phoenix</span>
           </button>
         )}
 
@@ -174,13 +174,13 @@ export function ChatWidget() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-bold tracking-tight">Phoenix Color AI</h3>
+                  <h3 className="text-sm font-bold tracking-tight">Phoenix</h3>
                   <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                     Live
                   </span>
                 </div>
                 <p className="text-[11px] text-white/70">
-                  Technical Solutions & Product Advisor
+                  Color Intelligence AI & Solution Advisor
                 </p>
               </div>
             </div>
