@@ -314,3 +314,23 @@
     }
   }
 }
+
+/* ============================================
+   HIDE NETLIFY INJECTED BADGES & DRAWERS
+   ============================================ */
+[data-netlify-drawer],
+netlify-drawer-root,
+#netlify-feedback-drawer,
+#netlify-drawer,
+.netlify-drawer-container,
+div[class*="netlify-drawer"],
+iframe[src*="netlify.com"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+}
