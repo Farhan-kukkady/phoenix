@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFab } from "@/components/ui/WhatsAppFab";
 import { ScrollTop } from "@/components/ui/ScrollTop";
 import { ChatWidget } from "@/components/chat/ChatWidget";
+import { RemoveNetlifyBadge } from "@/components/layout/RemoveNetlifyBadge";
 import { siteConfig } from "@/lib/config";
 import { generateOrganizationJsonLd } from "@/lib/seo";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
         <WhatsAppFab phoneNumber={siteConfig.whatsappNumber} />
         <ScrollTop />
         <ChatWidget />
+        <RemoveNetlifyBadge />
       </body>
     </html>
   );
