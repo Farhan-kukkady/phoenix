@@ -318,13 +318,15 @@
 /* ============================================
    HIDE NETLIFY INJECTED BADGES & DRAWERS
    ============================================ */
+a[href*="netlify"],
 [data-netlify-drawer],
 netlify-drawer-root,
 #netlify-feedback-drawer,
 #netlify-drawer,
 .netlify-drawer-container,
 div[class*="netlify-drawer"],
-iframe[src*="netlify.com"] {
+iframe[src*="netlify.com"],
+div:has(> a[href*="netlify.com"]) {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
