@@ -1,0 +1,325 @@
+[
+  {
+    "id": "x-rite",
+    "slug": "x-rite",
+    "name": "X-Rite",
+    "tagline": "The global leader in color science and measurement technology.",
+    "website": "https://www.xrite.com",
+    "description": "X-Rite is the global leader in color science and technology. The company develops, manufactures, markets and supports innovative color solutions through measurement systems, software, color standards and services.",
+    "logo": "/images/brands/x-rite.webp",
+    "logoAlt": "/images/brands/x-rite-white.svg",
+    "categoryIds": [
+      "xrite-cat-benchtop",
+      "xrite-cat-portable",
+      "xrite-cat-scanning",
+      "xrite-cat-inline",
+      "xrite-cat-lighting",
+      "xrite-cat-software"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "gmg",
+    "slug": "gmg",
+    "name": "GMG",
+    "tagline": "High-end color management and proofing software solutions.",
+    "website": "https://www.gmgcolor.com",
+    "description": "GMG is a leading developer and supplier of high-end color management software solutions, specializing in contract proofing, digital print optimization, and standardized press reproduction.",
+    "logo": "/images/brands/gmg.webp",
+    "logoAlt": "/images/brands/gmg-white.svg",
+    "categoryIds": [],
+    "isDemoData": false,
+    "hasDirectProducts": true
+  },
+  {
+    "id": "globalvision",
+    "slug": "globalvision",
+    "name": "GlobalVision",
+    "tagline": "Automated proofreading and quality inspection systems.",
+    "website": "https://www.globalvision.co",
+    "description": "GlobalVision provides automated quality control solutions that inspect text, artwork, barcodes, and braille throughout the packaging workflow, eliminating human error.",
+    "logo": "/images/brands/globalvision.webp",
+    "logoAlt": "/images/brands/globalvision-white.svg",
+    "categoryIds": [],
+    "isDemoData": false,
+    "hasDirectProducts": true
+  },
+  {
+    "id": "hybrid-software",
+    "slug": "hybrid-software",
+    "name": "Hybrid Software",
+    "tagline": "Enterprise prepress automation and packaging workflow software.",
+    "website": "https://www.hybridsoftware.com",
+    "description": "Hybrid Software develops innovative productivity tools for the graphic arts industry, including Cloudflow enterprise prepress workflow and Packz native PDF packaging editor.",
+    "logo": "/images/brands/hybrid-software.webp",
+    "logoAlt": "/images/brands/hybrid-software-white.svg",
+    "categoryIds": [],
+    "isDemoData": false,
+    "hasDirectProducts": true
+  },
+  {
+    "id": "phoenix-mis-iot",
+    "slug": "phoenix-mis-iot",
+    "name": "Phoenix M.I.S + IoT",
+    "tagline": "Proprietary shopfloor intelligence and print management systems.",
+    "website": "https://www.phoenixcolour.com",
+    "description": "Phoenix M.I.S + IoT is Phoenix Colour Technologies' proprietary shopfloor intelligence platform connecting press machinery, ERP systems, and QA instruments for real-time OEE and yield optimization.",
+    "logo": "/images/brands/phoenix-mis-iot.webp",
+    "logoAlt": "/images/brands/phoenix-mis-iot-white.svg",
+    "categoryIds": [],
+    "isDemoData": false,
+    "hasDirectProducts": true
+  },
+  {
+    "id": "miraclon",
+    "slug": "miraclon",
+    "name": "Miraclon",
+    "tagline": "Home of KODAK FLEXCEL Solutions for flexographic printing.",
+    "website": "https://www.miraclon.com",
+    "description": "Miraclon is the home of KODAK FLEXCEL Solutions, which have helped transform flexographic printing into a premium, consistent, and cost-effective packaging production process.",
+    "logo": "/images/brands/miraclon.webp",
+    "logoAlt": "/images/brands/miraclon-white.svg",
+    "categoryIds": [
+      "miraclon-cat-plates",
+      "miraclon-cat-equipment",
+      "miraclon-cat-software",
+      "miraclon-cat-shineled"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "eizo",
+    "slug": "eizo",
+    "name": "EIZO",
+    "tagline": "ColorEdge professional color-accurate monitors.",
+    "website": "https://www.eizoglobal.com",
+    "description": "EIZO manufactures high-end visual technology including the ColorEdge series of color management monitors engineered for prepress proofing, photography, and film post-production.",
+    "logo": "/images/brands/eizo.webp",
+    "logoAlt": "/images/brands/eizo-white.svg",
+    "categoryIds": [
+      "eizo-monitors-cat-cg-series",
+      "eizo-monitors-cat-cs-series"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "valiani",
+    "slug": "valiani",
+    "name": "Valiani",
+    "tagline": "Precision digital die cutting and packaging prototyping systems.",
+    "website": "https://www.valiani.com",
+    "description": "Valiani designs and manufactures precision flatbed digital cutting tables and software for packaging prototyping, short-run packaging conversion, and digital die cutting.",
+    "logo": "/images/brands/valiani.webp",
+    "logoAlt": "/images/brands/valiani-white.svg",
+    "categoryIds": [],
+    "isDemoData": false,
+    "hasDirectProducts": true
+  },
+  {
+    "id": "igt",
+    "slug": "igt",
+    "name": "IGT",
+    "tagline": "Printability testing equipment and laboratory instruments.",
+    "website": "https://www.igt.nl",
+    "description": "IGT Testing Systems produces high-precision testing equipment for the paper, printing, ink, and plastic industries to evaluate printability, tack, penetration, and rub resistance.",
+    "logo": "/images/brands/igt.webp",
+    "logoAlt": "/images/brands/igt-white.svg",
+    "categoryIds": [
+      "igt-cat-flexo-igt",
+      "igt-cat-offset-inktesters",
+      "igt-cat-gravures",
+      "igt-cat-ink-tester-igt",
+      "igt-cat-dryers",
+      "igt-cat-paper-testers-igt",
+      "igt-cat-ink-kitchen"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "inkmaker",
+    "slug": "inkmaker",
+    "name": "Inkmaker",
+    "tagline": "Integrated automated dispensing and ink dosing systems.",
+    "website": "https://www.inkmaker.com",
+    "description": "Inkmaker is a global manufacturer of automated dispensing systems and industrial plant engineering for liquid ink, paint, coatings, and chemical formulation.",
+    "logo": "/images/brands/inkmaker.webp",
+    "logoAlt": "/images/brands/inkmaker-white.svg",
+    "categoryIds": [
+      "inkmaker-cat-liquid-inks"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "just-normlicht",
+    "slug": "just-normlicht",
+    "name": "Just Normlicht",
+    "tagline": "Standardized lighting solutions according to ISO 3664:2009.",
+    "website": "https://www.just-normlicht.com",
+    "description": "Just Normlicht develops visual color assessment lighting equipment, proof stations, and LED light booths strictly adhering to international ISO 3664 standards.",
+    "logo": "/images/brands/just-normlicht.webp",
+    "logoAlt": "/images/brands/just-normlicht-white.svg",
+    "categoryIds": [
+      "just-normlicht-cat-color-viewing-booth",
+      "just-normlicht-cat-color-viewing-station"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "hanatek-instruments",
+    "slug": "hanatek-instruments",
+    "name": "Hanatek Instruments",
+    "tagline": "Physical packaging testing and substrate assessment instruments.",
+    "website": "https://www.hanatekinstruments.com",
+    "description": "Hanatek manufactures physical test equipment for packaging materials, assessing crease recovery, friction coefficients, tensile properties, and carton stiffness.",
+    "logo": "/images/brands/hanatek-instruments.webp",
+    "logoAlt": "/images/brands/hanatek-instruments-white.svg",
+    "categoryIds": [],
+    "isDemoData": false,
+    "hasDirectProducts": true
+  },
+  {
+    "id": "siegwerk",
+    "slug": "siegwerk",
+    "name": "Siegwerk",
+    "tagline": "Global market leader in printing inks and sustainable coatings.",
+    "website": "https://www.siegwerk.com",
+    "description": "Siegwerk is one of the world's leading manufacturers of printing inks and coatings for packaging applications and labels, with bespoke color formulation services.",
+    "logo": "/images/brands/siegwerk.webp",
+    "logoAlt": "/images/brands/siegwerk-white.svg",
+    "categoryIds": [
+      "siegwerk-cat-offset-siegwerk",
+      "siegwerk-cat-flexo-siegwerk"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "apex-international",
+    "slug": "apex-international",
+    "name": "Apex International",
+    "tagline": "World-class anilox rolls and sleeve measurement solutions.",
+    "website": "https://www.apexinternational.com",
+    "description": "Apex International is the global leader in anilox roll and sleeve manufacturing, utilizing patented GTT genetic transfer technology for superior ink transfer consistency.",
+    "logo": "/images/brands/apex-international.webp",
+    "logoAlt": "/images/brands/apex-international-white.svg",
+    "categoryIds": [
+      "apex-international-cat-corrugated",
+      "apex-international-cat-flexo-wide-web",
+      "apex-international-cat-label-narrow-web",
+      "apex-international-cat-coating-offset"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "epson",
+    "slug": "epson",
+    "name": "Epson",
+    "tagline": "UltraChrome precision proofing and large format printing.",
+    "website": "https://www.epson.ae",
+    "description": "Epson provides industry-standard UltraChrome PRO pigment ink printers utilized worldwide for ISO 12647 contract proofing, packaging mockup generation, and fine art reproduction.",
+    "logo": "/images/brands/epson.webp",
+    "logoAlt": "/images/brands/epson-white.svg",
+    "categoryIds": [],
+    "isDemoData": false,
+    "hasDirectProducts": true
+  },
+  {
+    "id": "luster",
+    "slug": "luster",
+    "name": "Luster",
+    "tagline": "High-speed 100% inline print inspection and machine vision.",
+    "website": "https://www.lusterinc.com",
+    "description": "Luster LightTech develops machine vision systems, offering 100% inline surface and print inspection for web presses, sheetfed printing, and flexible packaging converting.",
+    "logo": "/images/brands/luster.webp",
+    "logoAlt": "/images/brands/luster-white.svg",
+    "categoryIds": [
+      "luster-inline-cat-carton-packaging-inspection",
+      "luster-inline-cat-flexible-packaging",
+      "luster-inline-cat-narrow-web-inspection"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "pantone",
+    "slug": "pantone",
+    "name": "Pantone",
+    "tagline": "The world's universal language of color for brand consistency.",
+    "website": "https://www.pantone.com",
+    "description": "Pantone provides a universal language of color that enables color-critical decisions through every stage of the workflow for brands and manufacturers across graphic arts and textiles.",
+    "logo": "/images/brands/pantone.webp",
+    "logoAlt": "/images/brands/pantone-white.svg",
+    "categoryIds": [
+      "pantone-cat-fashion-home-interiors",
+      "pantone-cat-plastic",
+      "pantone-cat-print-and-packaging",
+      "pantone-cat-digital-color-standards"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "engview-systems",
+    "slug": "engview-systems",
+    "name": "EngView Systems",
+    "tagline": "CAD/CAM solutions for packaging and POP/POS displays.",
+    "website": "https://www.engview.com",
+    "description": "EngView Systems develops specialized CAD/CAM software for structural design of corrugated packaging, folding cartons, and point-of-sale displays.",
+    "logo": "/images/brands/engview-systems.webp",
+    "logoAlt": "/images/brands/engview-systems-white.svg",
+    "categoryIds": [
+      "engview-systems-cat-designer-standard"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "printfactory",
+    "slug": "printfactory",
+    "name": "PrintFactory",
+    "tagline": "Cloud-connected workflow and color management ecosystem.",
+    "website": "https://www.printfactory.cloud",
+    "description": "PrintFactory is a production-suite software for wide-format and industrial digital printing, delivering centralized color consistency and significant ink savings.",
+    "logo": "/images/brands/printfactory.webp",
+    "logoAlt": "/images/brands/printfactory-white.svg",
+    "categoryIds": [],
+    "isDemoData": false,
+    "hasDirectProducts": true
+  },
+  {
+    "id": "eco3",
+    "slug": "eco3",
+    "name": "ECO3",
+    "tagline": "Prepress solutions, offset printing plates, and screening.",
+    "website": "https://www.eco3.com",
+    "description": "ECO3 is a global provider of prepress systems and offset printing plates, combining hardware, chemistry-free thermal plates, and workflow software.",
+    "logo": "/images/brands/eco3.webp",
+    "logoAlt": "/images/brands/eco3-white.svg",
+    "categoryIds": [
+      "eco-3-cat-equipments",
+      "eco-3-cat-plates-eco"
+    ],
+    "isDemoData": false,
+    "hasDirectProducts": false
+  },
+  {
+    "id": "studiorip",
+    "slug": "studiorip",
+    "name": "StudioRIP",
+    "tagline": "Feature-rich, high-performance raster image processing (RIP).",
+    "website": "https://www.studiorip.com",
+    "description": "StudioRIP produces versatile raster image processing solutions engineered for flexo, offset, screen, and digital printing with advanced screening engines.",
+    "logo": "/images/brands/studiorip.webp",
+    "logoAlt": "/images/brands/studiorip-white.svg",
+    "categoryIds": [],
+    "isDemoData": false,
+    "hasDirectProducts": true
+  }
+]

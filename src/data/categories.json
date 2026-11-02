@@ -1,0 +1,390 @@
+[
+  {
+    "id": "xrite-cat-benchtop",
+    "slug": "benchtop-spectrophotometers",
+    "brandId": "x-rite",
+    "name": "Benchtop Spectrophotometers",
+    "description": "Reference-grade benchtop spectrophotometers offering superior inter-instrument agreement for formulation, quality control, and strict supply chain color compliance.",
+    "image": "/images/categories/rite-img1.webp",
+    "hasSeries": true,
+    "seriesIds": [
+      "benchtop-sphere-spectrophotometers",
+      "compact-benchtop-spectrophotometers"
+    ]
+  },
+  {
+    "id": "xrite-cat-portable",
+    "slug": "portable-handheld-spectrophotometers",
+    "brandId": "x-rite",
+    "name": "Portable & Handheld Spectrophotometers",
+    "description": "Industry-standard portable spectrophotometers and densitometers engineered for high-accuracy color measurement on press, in the laboratory, and on the production floor.",
+    "image": "/images/categories/portableHandheld.webp",
+    "hasSeries": true,
+    "seriesIds": [
+      "exact-family",
+      "ci6x-series",
+      "multi-angle-series",
+      "spectrocolorimeters-series"
+    ]
+  },
+  {
+    "id": "xrite-cat-scanning",
+    "slug": "color-bar-scanning-instruments",
+    "brandId": "x-rite",
+    "name": "Color Bar Scanning Instruments",
+    "description": "Automated high-speed scanning spectrophotometers and tracking systems designed for commercial and packaging press automation.",
+    "image": "/images/categories/rite-img3.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "xrite-cat-inline",
+    "slug": "inline-spectrophotometers",
+    "brandId": "x-rite",
+    "name": "Inline Spectrophotometers",
+    "description": "Continuous non-contact measurement solutions providing real-time color verification directly on running manufacturing webs and extrusion lines.",
+    "image": "/images/categories/rite-img4.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "xrite-cat-lighting",
+    "slug": "light-booths",
+    "brandId": "x-rite",
+    "name": "Light Booths",
+    "description": "Controlled visual evaluation lighting booths conforming to international ISO 3664 and ASTM standards for consistent color viewing and approval.",
+    "image": "/images/categories/rite-img5.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "xrite-cat-software",
+    "slug": "color-analysis-software",
+    "brandId": "x-rite",
+    "name": "Color Analysis Software",
+    "description": "Enterprise formulation, quality control, and device calibration software connecting your supply chain from design to production.",
+    "image": "/images/categories/rite-img6.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "miraclon-cat-plates",
+    "slug": "plates",
+    "brandId": "miraclon",
+    "name": "Plates",
+    "description": "Plates solutions and instruments engineered by MIRACLON.",
+    "image": "/images/categories/Category_Listing23.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "miraclon-cat-equipment",
+    "slug": "equipment",
+    "brandId": "miraclon",
+    "name": "Equipment",
+    "description": "Equipment solutions and instruments engineered by MIRACLON.",
+    "image": "/images/categories/Sub_Category_Listing68.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "miraclon-cat-software",
+    "slug": "software",
+    "brandId": "miraclon",
+    "name": "Software",
+    "description": "Software solutions and instruments engineered by MIRACLON.",
+    "image": "/images/categories/Category_Listing91.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "miraclon-cat-shineled",
+    "slug": "shineled",
+    "brandId": "miraclon",
+    "name": "ShineLed",
+    "description": "ShineLed solutions and instruments engineered by MIRACLON.",
+    "image": "/images/categories/Category_Listing32.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "eizo-monitors-cat-cg-series",
+    "slug": "cg-series",
+    "brandId": "eizo",
+    "name": "CG Series",
+    "description": "CG Series solutions and instruments engineered by EIZO-MONITORS.",
+    "image": "/images/categories/CG_Series_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "eizo-monitors-cat-cs-series",
+    "slug": "cs-series",
+    "brandId": "eizo",
+    "name": "CS Series",
+    "description": "CS Series solutions and instruments engineered by EIZO-MONITORS.",
+    "image": "/images/categories/-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "siegwerk-cat-offset-siegwerk",
+    "slug": "offset-siegwerk",
+    "brandId": "siegwerk",
+    "name": "Offset",
+    "description": "Offset solutions and instruments engineered by SIEGWERK.",
+    "image": "/images/categories/Offset_-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "siegwerk-cat-flexo-siegwerk",
+    "slug": "flexo-siegwerk",
+    "brandId": "siegwerk",
+    "name": "Flexo",
+    "description": "Flexo solutions and instruments engineered by SIEGWERK.",
+    "image": "/images/categories/Flexo_-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "igt-cat-flexo-igt",
+    "slug": "flexo-igt",
+    "brandId": "igt",
+    "name": "Flexo",
+    "description": "Flexo solutions and instruments engineered by IGT.",
+    "image": "/images/categories/FlexoPlus4ProdImg.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "igt-cat-offset-inktesters",
+    "slug": "offset-inktesters",
+    "brandId": "igt",
+    "name": "Offset",
+    "description": "Offset solutions and instruments engineered by IGT.",
+    "image": "/images/categories/Offset_-_Sub_Category_Listing49.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "igt-cat-gravures",
+    "slug": "gravures",
+    "brandId": "igt",
+    "name": "Gravures",
+    "description": "Gravures solutions and instruments engineered by IGT.",
+    "image": "/images/categories/Gravure_-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "igt-cat-ink-tester-igt",
+    "slug": "ink-tester-igt",
+    "brandId": "igt",
+    "name": "Ink Tester",
+    "description": "Ink Tester solutions and instruments engineered by IGT.",
+    "image": "/images/categories/Tack__-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "igt-cat-dryers",
+    "slug": "dryers",
+    "brandId": "igt",
+    "name": "Dryers",
+    "description": "Dryers solutions and instruments engineered by IGT.",
+    "image": "/images/categories/Dryers_-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "igt-cat-paper-testers-igt",
+    "slug": "paper-testers-igt",
+    "brandId": "igt",
+    "name": "Paper Testers",
+    "description": "Paper Testers solutions and instruments engineered by IGT.",
+    "image": "/images/categories/paper_tester.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "igt-cat-ink-kitchen",
+    "slug": "ink-kitchen",
+    "brandId": "igt",
+    "name": "Ink Kitchen",
+    "description": "Ink Kitchen solutions and instruments engineered by IGT.",
+    "image": "/images/categories/Ink_kitchen__-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "just-normlicht-cat-color-viewing-booth",
+    "slug": "color-viewing-booth",
+    "brandId": "just-normlicht",
+    "name": "Color viewing booth",
+    "description": "Color viewing booth solutions and instruments engineered by JUST-NORMLICHT.",
+    "image": "/images/categories/Color_viewing_booth.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "just-normlicht-cat-color-viewing-station",
+    "slug": "color-viewing-station",
+    "brandId": "just-normlicht",
+    "name": "Color viewing station",
+    "description": "Color viewing station solutions and instruments engineered by JUST-NORMLICHT.",
+    "image": "/images/categories/Color_viewing_station.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "apex-international-cat-corrugated",
+    "slug": "corrugated",
+    "brandId": "apex-international",
+    "name": "Corrugated",
+    "description": "Corrugated solutions and instruments engineered by APEX-INTERNATIONAL.",
+    "image": "/images/categories/Corrugated_-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "apex-international-cat-flexo-wide-web",
+    "slug": "flexo-wide-web",
+    "brandId": "apex-international",
+    "name": "Flexo Wide Web",
+    "description": "Flexo Wide Web solutions and instruments engineered by APEX-INTERNATIONAL.",
+    "image": "/images/categories/xrite-benchtop.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "apex-international-cat-label-narrow-web",
+    "slug": "label-narrow-web",
+    "brandId": "apex-international",
+    "name": "Label Narrow Web",
+    "description": "Label Narrow Web solutions and instruments engineered by APEX-INTERNATIONAL.",
+    "image": "/images/categories/xrite-benchtop.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "apex-international-cat-coating-offset",
+    "slug": "coating-offset",
+    "brandId": "apex-international",
+    "name": "Coating Offset",
+    "description": "Coating Offset solutions and instruments engineered by APEX-INTERNATIONAL.",
+    "image": "/images/categories/xrite-benchtop.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "luster-inline-cat-carton-packaging-inspection",
+    "slug": "carton-packaging-inspection",
+    "brandId": "luster",
+    "name": "Carton Packaging Inspection",
+    "description": "Carton Packaging Inspection solutions and instruments engineered by LUSTER-INLINE.",
+    "image": "/images/categories/-_Sub_Category_Listing27.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "luster-inline-cat-flexible-packaging",
+    "slug": "flexible-packaging",
+    "brandId": "luster",
+    "name": "Flexible Packaging",
+    "description": "Flexible Packaging solutions and instruments engineered by LUSTER-INLINE.",
+    "image": "/images/categories/-_Sub_Category_Listing61.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "luster-inline-cat-narrow-web-inspection",
+    "slug": "narrow-web-inspection",
+    "brandId": "luster",
+    "name": "Narrow Web Inspection",
+    "description": "Narrow Web Inspection solutions and instruments engineered by LUSTER-INLINE.",
+    "image": "/images/categories/-_Sub_Category_Listing3.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "pantone-cat-fashion-home-interiors",
+    "slug": "fashion-home-interiors",
+    "brandId": "pantone",
+    "name": "Fashion Home Interiors",
+    "description": "Fashion Home Interiors solutions and instruments engineered by PANTONE.",
+    "image": "/images/categories/xrite-benchtop.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "pantone-cat-plastic",
+    "slug": "plastic",
+    "brandId": "pantone",
+    "name": "Plastic",
+    "description": "Plastic solutions and instruments engineered by PANTONE.",
+    "image": "/images/categories/-_Sub_Category_Listing6.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "pantone-cat-print-and-packaging",
+    "slug": "print-and-packaging",
+    "brandId": "pantone",
+    "name": "Print and Packaging",
+    "description": "Print and Packaging solutions and instruments engineered by PANTONE.",
+    "image": "/images/categories/-_Sub_Category_Listing25.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "pantone-cat-digital-color-standards",
+    "slug": "digital-color-standards",
+    "brandId": "pantone",
+    "name": "Digital Color Standards",
+    "description": "Digital Color Standards solutions and instruments engineered by PANTONE.",
+    "image": "/images/categories/-_Sub_Category_Listing92.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "engview-systems-cat-designer-standard",
+    "slug": "designer-standard",
+    "brandId": "engview-systems",
+    "name": "Designer Standard",
+    "description": "Designer Standard solutions and instruments engineered by ENGVIEW-SYSTEMS.",
+    "image": "/images/categories/-_Sub_Category_Listing85.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "eco-3-cat-equipments",
+    "slug": "equipments",
+    "brandId": "eco3",
+    "name": "Equipments",
+    "description": "Equipments solutions and instruments engineered by ECO-3.",
+    "image": "/images/categories/Equipments_-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "eco-3-cat-plates-eco",
+    "slug": "plates-eco",
+    "brandId": "eco3",
+    "name": "Plates",
+    "description": "Plates solutions and instruments engineered by ECO-3.",
+    "image": "/images/categories/Plates_-_Sub_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  },
+  {
+    "id": "inkmaker-cat-liquid-inks",
+    "slug": "liquid-inks",
+    "brandId": "inkmaker",
+    "name": "Liquid Inks",
+    "description": "Liquid Inks solutions and instruments engineered by INKMAKER.",
+    "image": "/images/categories/Inkmaker_Category_Listing.webp",
+    "hasSeries": false,
+    "seriesIds": []
+  }
+]

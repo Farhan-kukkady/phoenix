@@ -1,0 +1,95 @@
+{
+  "id": "brand-slug-product-slug",
+  "slug": "product-slug",
+  "brandId": "brand-slug",
+  "categoryId": "category-slug",
+  "seriesId": "series-slug",
+  "name": "Product Model Name",
+  "modelNumber": "MODEL-1234",
+  "shortDescription": "Concise single or two sentence overview of the product for catalog cards and search indexes.",
+  "overview": "<p>Detailed product overview formatted in clean HTML. Explains primary operational benefits, technological architecture, integration capabilities, and return on investment.</p><p>Features high-speed processing, industry-leading accuracy, and ISO standard compliance across substrates.</p>",
+  "images": [
+    "/images/products/product-slug/main.webp",
+    "/images/products/product-slug/angle.webp",
+    "/images/products/product-slug/screen.webp"
+  ],
+  "keyFeatures": [
+    "Patented optical sensor with high inter-instrument agreement",
+    "Real-time G7 and ISO 12647-2 pass/fail guidance",
+    "Seamless integration with pressroom formulation and QC software",
+    "Ergonomic, ruggedized handheld design with touch display",
+    "Cloud synchronization and remote fleet calibration reporting"
+  ],
+  "specifications": [
+    {
+      "group": "Optical & Measurement",
+      "items": [
+        { "label": "Geometry", "value": "45°:0° ring illumination optics" },
+        { "label": "Spectral Range", "value": "400 nm to 700 nm" },
+        { "label": "Spectral Interval", "value": "10", "unit": "nm" },
+        { "label": "Aperture Sizes", "value": "1.5 mm, 2.0 mm, 4.0 mm, or 6.0 mm" },
+        { "label": "Measurement Conditions", "value": "M0, M1, M2, M3 according to ISO 13655" }
+      ]
+    },
+    {
+      "group": "Connectivity & Performance",
+      "items": [
+        { "label": "Interfaces", "value": "USB-C, Wi-Fi 802.11ac, Bluetooth 5.0" },
+        { "label": "Measurement Speed", "value": "< 1", "unit": "sec" },
+        { "label": "Inter-instrument Agreement", "value": "Average 0.15", "unit": "ΔE*ab" },
+        { "label": "Short-term Repeatability", "value": "0.03", "unit": "ΔE*ab on white" }
+      ]
+    },
+    {
+      "group": "Physical & Environmental",
+      "items": [
+        { "label": "Dimensions (H x W x L)", "value": "180 x 78 x 76", "unit": "mm" },
+        { "label": "Weight", "value": "700", "unit": "g" },
+        { "label": "Battery Life", "value": "Up to 4,500 measurements per charge" },
+        { "label": "Operating Temperature", "value": "10°C to 35°C" }
+      ]
+    }
+  ],
+  "applications": [
+    "Commercial Sheetfed & Web Offset Press Calibration",
+    "Narrow Web Flexographic & Label Printing",
+    "Corrugated Packaging & Folding Carton QC",
+    "Ink Kitchen Formulation Verification"
+  ],
+  "industries": [
+    "Commercial Print",
+    "Flexible Packaging",
+    "Folding Carton",
+    "Label & Narrow Web"
+  ],
+  "tags": [
+    "spectrophotometer",
+    "color measurement",
+    "pressroom",
+    "iso 12647",
+    "g7 master",
+    "handheld"
+  ],
+  "downloads": [
+    {
+      "label": "Product Technical Brochure (PDF)",
+      "type": "brochure",
+      "url": "/downloads/phoenix-demo-brochure.pdf"
+    },
+    {
+      "label": "Hardware Specification Sheet",
+      "type": "datasheet",
+      "url": "/downloads/phoenix-demo-brochure.pdf"
+    },
+    {
+      "label": "Operator Manual & Quick Start",
+      "type": "manual",
+      "url": "/downloads/phoenix-demo-brochure.pdf"
+    }
+  ],
+  "relatedProductIds": [
+    "brand-slug-related-model-1",
+    "brand-slug-related-model-2"
+  ],
+  "isDemo": false
+}

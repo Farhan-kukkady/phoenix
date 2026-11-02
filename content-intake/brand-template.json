@@ -1,0 +1,15 @@
+{
+  "id": "brand-slug-here",
+  "slug": "brand-slug-here",
+  "name": "Brand Name",
+  "logo": "/images/brands/brand-name.svg",
+  "logoAlt": "/images/brands/brand-name-dark.svg",
+  "description": "Comprehensive description of brand history, product scope, and technological leadership in color science or manufacturing automation.",
+  "website": "https://www.example-brand.com",
+  "categoryIds": [
+    "category-slug-1",
+    "category-slug-2"
+  ],
+  "tagline": "Precision engineered for high-performance production.",
+  "isDemoData": false
+}

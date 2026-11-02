@@ -1,0 +1,1764 @@
+
+Build Phase 0 and Phase 1 of the Phoenix Colour Technologies website. The Next.js 16 scaffold (with React 19, Tailwind v4, TypeScript strict) is already in C:\phoenix. The app directory is at C:\phoenix\app (NOT src/app — the scaffold used no src dir, but we need to restructure to src/).
+
+## CRITICAL: Restructure to src/ first
+The scaffold placed files in C:\phoenix\app\ and C:\phoenix\public\. Move them to src/:
+1. Move C:\phoenix\app → C:\phoenix\src\app (create src\ first)
+2. Update tsconfig.json paths from "@/*": ["./*"] to "@/*": ["./src/*"]
+3. Update all import paths accordingly
+
+## PHASE 0: Content Intake Folder
+Create C:\phoenix\content-intake\README.md with:
+- How to replace demo data (isDemo flag, site-content.json explanation)
+- Instructions for each template
+
+Create C:\phoenix\content-intake\brand-template.json matching the Brand type
+Create C:\phoenix\content-intake\category-template.json matching the Category type  
+Create C:\phoenix\content-intake\series-template.json matching the Series type
+Create C:\phoenix\content-intake\product-template.json matching the Product type (full schema)
+
+## PHASE 1: Foundation Files
+
+### 1. Package.json
+Overwrite C:\phoenix\package.json with:
+```json
+{
+  "name": "phoenix-colour-technologies",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "next": "16.4.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "@radix-ui/react-dialog": "^1.1.4",
+    "@radix-ui/react-navigation-menu": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.2",
+    "@radix-ui/react-accordion": "^1.2.2",
+    "@radix-ui/react-label": "^2.1.1",
+    "framer-motion": "^12.15.0",
+    "react-hook-form": "^7.54.2",
+    "zod": "^3.24.1",
+    "nodemailer": "^6.9.16",
+    "minisearch": "^7.1.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0",
+    "lucide-react": "^0.469.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/nodemailer": "^6.4.17",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "prettier": "^3.4.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@12.16.1"
+}
+```
+
+### 2. tsconfig.json
+Overwrite C:\phoenix\tsconfig.json:
+```json
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+```
+
+### 3. next.config.ts
+Overwrite C:\phoenix\next.config.ts:
+```typescript
+import type { NextConfig } from "next";
+import redirectsData from "./redirects.json";
+
+const nextConfig: NextConfig = {
+  cacheComponents: true,
+  partialPrefetching: true,
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
+    },
+  },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [],
+  },
+  async redirects() {
+    return redirectsData as {
+      source: string;
+      destination: string;
+      permanent: boolean;
+    }[];
+  },
+};
+
+export default nextConfig;
+```
+
+### 4. redirects.json
+Create C:\phoenix\redirects.json:
+```json
+[]
+```
+
+### 5. .env.example
+Create C:\phoenix\.env.example:
+```
+# SMTP Configuration (optional - in demo mode, enquiries log to console)
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-smtp-user
+SMTP_PASS=your-smtp-password
+SMTP_FROM="Phoenix Colour Technologies <info@example.com>"
+SMTP_TO=info@example.com
+
+# WhatsApp number (with country code, no + or spaces)
+NEXT_PUBLIC_WHATSAPP_NUMBER=97140000000
+
+# Site URL (used for canonical URLs, sitemap)
+NEXT_PUBLIC_SITE_URL=https://www.phoenixcolour.com
+```
+
+### 6. .prettierrc
+Create C:\phoenix\.prettierrc:
+```json
+{
+  "semi": true,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 100
+}
+```
+
+### 7. TypeScript Types
+Create C:\phoenix\src\types\brand.ts:
+```typescript
+export interface Brand {
+  id: string;
+  slug: string;
+  name: string;
+  logo: string;           // path relative to /public
+  logoAlt?: string;       // dark/light variant
+  description: string;
+  website: string;
+  categoryIds: string[];
+  tagline?: string;
+  isDemoData?: boolean;
+}
+```
+
+Create C:\phoenix\src\types\category.ts:
+```typescript
+export interface Category {
+  id: string;
+  slug: string;
+  brandId: string;
+  name: string;
+  image: string;
+  description: string;
+  hasSeries: boolean;
+  seriesIds?: string[];
+  isDemoData?: boolean;
+}
+```
+
+Create C:\phoenix\src\types\series.ts:
+```typescript
+export interface Series {
+  id: string;
+  slug: string;
+  categoryId: string;
+  brandId: string;
+  name: string;
+  image: string;
+  description: string;
+  isDemoData?: boolean;
+}
+```
+
+Create C:\phoenix\src\types\product.ts:
+```typescript
+export interface SpecItem {
+  label: string;
+  value: string;
+  unit?: string;
+}
+
+export interface SpecGroup {
+  group: string;
+  items: SpecItem[];
+}
+
+export interface Download {
+  label: string;
+  type: "brochure" | "datasheet" | "manual" | "software" | "other";
+  url: string;
+}
+
+export interface Product {
+  id: string;
+  slug: string;
+  brandId: string;
+  categoryId: string;
+  seriesId?: string;
+  name: string;
+  modelNumber?: string;
+  shortDescription: string;
+  overview: string;           // rich text as HTML string
+  images: string[];           // paths relative to /public
+  keyFeatures: string[];
+  specifications: SpecGroup[];
+  applications: string[];
+  industries: string[];
+  tags: string[];
+  downloads: Download[];
+  relatedProductIds: string[];
+  isDemo: boolean;
+}
+```
+
+Create C:\phoenix\src\types\index.ts:
+```typescript
+export type { Brand } from "./brand";
+export type { Category } from "./category";
+export type { Series } from "./series";
+export type { Product, SpecItem, SpecGroup, Download } from "./product";
+```
+
+### 8. lib/config.ts
+Create C:\phoenix\src\lib\config.ts:
+```typescript
+export const siteConfig = {
+  name: "Phoenix Colour Technologies",
+  tagline: "Precision, performance, and intelligent manufacturing.",
+  description:
+    "Leading color management and workflow automation solutions provider serving the UAE, Saudi Arabia, GCC, and Africa.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.phoenixcolour.com",
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "97140000000",
+  contact: {
+    phone: "+971 4 000 0000",
+    email: "info@example.com",
+    address: "Unit 205, Business Bay Tower, Dubai, UAE",
+  },
+  social: {
+    linkedin: "https://linkedin.com/company/phoenix-colour-technologies",
+    twitter: "https://twitter.com/phoenixcolourUAE",
+    instagram: "https://instagram.com/phoenixcolourtech",
+    youtube: "https://youtube.com/c/phoenixcolourtech",
+  },
+  nav: {
+    left: [
+      { label: "About", href: "/about" },
+      { label: "Products", href: "/products", hasMegaMenu: true },
+      { label: "Print & Packaging", href: "/print-packaging" },
+    ],
+    right: [
+      { label: "Industrial", href: "/industrial" },
+      { label: "Contact", href: "/contact" },
+      { label: "Services", href: "/services" },
+    ],
+  },
+} as const;
+```
+
+### 9. lib/utils.ts
+Create C:\phoenix\src\lib\utils.ts:
+```typescript
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+export function slugify(str: string): string {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+```
+
+### 10. src/data/site-content.json
+Create C:\phoenix\src\data\site-content.json with this COMPLETE content:
+```json
+{
+  "isDemoData": true,
+  "company": {
+    "name": "Phoenix Colour Technologies",
+    "tagline": "Precision, performance, and intelligent manufacturing.",
+    "founded": 2007,
+    "foundedCity": "Dubai",
+    "stats": [
+      { "value": "20+", "label": "Years of Domain Expertise", "description": "Deep industry knowledge since 2007" },
+      { "value": "1,200+", "label": "Satisfied Clients", "description": "Across 20+ countries worldwide" },
+      { "value": "12–16", "label": "Month ROI Focus", "description": "Solutions engineered for fast, measurable returns" },
+      { "value": "20+", "label": "Countries Served", "description": "UAE, GCC, Saudi Arabia, Africa, Asia" }
+    ],
+    "regions": [
+      { "name": "United Arab Emirates", "city": "Dubai", "flag": "🇦🇪" },
+      { "name": "Saudi Arabia", "city": "Riyadh", "flag": "🇸🇦" },
+      { "name": "Kuwait", "city": "Kuwait City", "flag": "🇰🇼" },
+      { "name": "Qatar", "city": "Doha", "flag": "🇶🇦" },
+      { "name": "Bahrain", "city": "Manama", "flag": "🇧🇭" },
+      { "name": "Oman", "city": "Muscat", "flag": "🇴🇲" },
+      { "name": "Egypt", "city": "Cairo", "flag": "🇪🇬" },
+      { "name": "South Africa", "city": "Johannesburg", "flag": "🇿🇦" }
+    ]
+  },
+  "about": {
+    "headline": "Two Decades of Color Excellence",
+    "story": "Phoenix Colour Technologies was founded in Dubai in 2007 with a singular mission: to bring global color science standards to the dynamic and fast-growing markets of the Middle East, Africa, and Asia. What began as a specialist color management consultancy has grown into the region's most trusted partner for precision color, workflow automation, and intelligent manufacturing systems.\n\nOver twenty years, we have built deep expertise across the full color value chain — from spectrophotometric measurement and ICC profiling to press standardization, ink formulation, and shopfloor IoT intelligence. Our team of certified G7 Experts and ISO 12647 specialists brings the same rigor to a flexo press in Lagos as to a gravure line in Riyadh.\n\nToday, we support more than 1,200 companies in print and packaging, brand manufacturing, plastics, paints, textiles, and industrial manufacturing across 20+ countries. Every solution we deliver is engineered with one goal: measurable return on investment within 12 to 16 months.",
+    "vision": "To be the defining force for color accuracy and intelligent manufacturing across emerging markets — enabling every manufacturer, printer, and brand owner in our region to match the precision of the world's best production facilities.",
+    "mission": "We exist to close the gap between global color standards and regional manufacturing reality. We do this by combining best-in-class technology partnerships, certified domain expertise, and relentless after-sales support to deliver solutions that perform — on press, on the shopfloor, and on the balance sheet.",
+    "values": [
+      {
+        "icon": "Target",
+        "title": "Precision First",
+        "description": "We believe that measurement drives improvement. Every recommendation we make is grounded in data, standards, and repeatable science."
+      },
+      {
+        "icon": "Handshake",
+        "title": "Partnership Over Transactions",
+        "description": "We invest in long-term relationships. Our success is measured by our clients' outcomes, not by units shipped."
+      },
+      {
+        "icon": "Globe",
+        "title": "Global Standards, Regional Understanding",
+        "description": "We bring ISO, G7, and FOGRA standards to markets that need them most, with the cultural intelligence to make them stick."
+      },
+      {
+        "icon": "Lightbulb",
+        "title": "Continuous Innovation",
+        "description": "We stay at the cutting edge of color science, IoT, and workflow automation so our clients benefit from emerging capabilities before their competitors do."
+      },
+      {
+        "icon": "Shield",
+        "title": "Uncompromising Integrity",
+        "description": "We recommend only what we would use ourselves. Our clients trust us to be honest about fit, capability, and ROI."
+      }
+    ]
+  },
+  "hero": {
+    "slides": [
+      {
+        "headline": "Color That Performs.",
+        "headlineGradient": "Everywhere.",
+        "subtext": "Advanced color management and workflow automation for the Middle East, Africa, and Asia.",
+        "ctaLabel": "Explore Solutions",
+        "ctaHref": "/products",
+        "image": "/images/hero/color-measurement.jpg"
+      },
+      {
+        "headline": "Print Smarter.",
+        "headlineGradient": "Print Consistent.",
+        "subtext": "G7 and ISO 12647 process standardization for packaging and commercial print operations.",
+        "ctaLabel": "Print & Packaging Solutions",
+        "ctaHref": "/print-packaging",
+        "image": "/images/hero/print-packaging.jpg"
+      },
+      {
+        "headline": "Industrial Color.",
+        "headlineGradient": "Engineered Precise.",
+        "subtext": "From paints and plastics to textiles and coatings — color intelligence for every production environment.",
+        "ctaLabel": "Industrial Solutions",
+        "ctaHref": "/industrial",
+        "image": "/images/hero/industrial.jpg"
+      }
+    ]
+  },
+  "testimonials": [
+    {
+      "quote": "Phoenix Colour Technologies transformed our print standardization process. We achieved G7 Master certification within three months and reduced ink waste by 22%. Their team's expertise is genuinely world-class.",
+      "author": "Khalid Al-Mansouri",
+      "title": "Production Director",
+      "company": "Arabian Print Group (Demo)",
+      "industry": "Commercial Print"
+    },
+    {
+      "quote": "The X-Rite spectrophotometer solution recommended by Phoenix has given our QC lab capabilities we previously thought required a much larger investment. ROI was under 12 months.",
+      "author": "Priya Nambiar",
+      "title": "Quality Assurance Manager",
+      "company": "Gulf Packaging Industries (Demo)",
+      "industry": "Flexible Packaging"
+    },
+    {
+      "quote": "Implementing GMG ColorServer with Phoenix's guidance cut our press make-ready time by 35%. Their support team responds within hours — not days. Exceptional service.",
+      "author": "Jean-Pierre Dubois",
+      "title": "Prepress Manager",
+      "company": "Precision Labels MENA (Demo)",
+      "industry": "Label Printing"
+    },
+    {
+      "quote": "Phoenix Colour's IoT shopfloor solution gave us real-time visibility across our coating lines for the first time. The data drove a 15% improvement in first-pass quality.",
+      "author": "Amina Osei-Bonsu",
+      "title": "Operations Manager",
+      "company": "AfriPaint Manufacturing (Demo)",
+      "industry": "Paints & Coatings"
+    }
+  ],
+  "services": [
+    {
+      "icon": "Gauge",
+      "title": "Color Management Consulting",
+      "slug": "color-management",
+      "description": "From ICC profiling and G7 calibration to press standardization and ISO 12647 compliance — our certified experts diagnose, configure, and verify your color workflow from substrate to delivery.",
+      "features": ["G7 Expert-led calibration", "ICC profile creation & validation", "Press fingerprinting", "ISO 12647-2/6 audit & certification support", "Remote monitoring packages"]
+    },
+    {
+      "icon": "Workflow",
+      "title": "Workflow Automation",
+      "slug": "workflow-automation",
+      "description": "Eliminate manual touchpoints and reduce errors across prepress, production, and shipping. We design, install, and support end-to-end automation using best-in-class platforms.",
+      "features": ["MIS/ERP integration", "JDF/JMF job ticketing", "Automated preflight & proofing", "Web-to-print portals", "Shopfloor data capture"]
+    },
+    {
+      "icon": "BarChart3",
+      "title": "Spectrophotometric Measurement",
+      "slug": "measurement",
+      "description": "Instrument selection, installation, and ongoing calibration services for the full X-Rite and Hanatek portfolio. We ensure your measurement data is accurate, consistent, and traceable.",
+      "features": ["Instrument selection advisory", "On-site installation & training", "Preventive maintenance contracts", "Inter-instrument agreement programs", "Calibration traceability documentation"]
+    },
+    {
+      "icon": "Cpu",
+      "title": "IoT Shopfloor Intelligence",
+      "slug": "iot-shopfloor",
+      "description": "Real-time production monitoring, OEE tracking, and predictive maintenance for print and industrial manufacturing environments.",
+      "features": ["Machine connectivity (OPC-UA, MQTT)", "Real-time OEE dashboards", "Scrap & waste analytics", "Predictive maintenance alerts", "ERP data synchronization"]
+    },
+    {
+      "icon": "GraduationCap",
+      "title": "Training & Certification",
+      "slug": "training",
+      "description": "Structured training programmes for press operators, QC technicians, and prepress professionals — including G7 Expert preparation and X-Rite product certification.",
+      "features": ["G7 Expert preparation courses", "X-Rite certified training", "ISO 12647 operator workshops", "Custom on-site training", "Online learning modules"]
+    },
+    {
+      "icon": "Wrench",
+      "title": "After-Sales Support",
+      "slug": "support",
+      "description": "Regional support desks, SLA-backed response times, spare parts inventory, and annual maintenance contracts to keep your investment performing.",
+      "features": ["Same/next-day response SLAs", "Remote diagnostic support", "Spare parts availability", "Annual maintenance contracts", "Upgrade advisory services"]
+    }
+  ],
+  "industries": [
+    {
+      "slug": "print-packaging",
+      "name": "Print & Packaging",
+      "icon": "Package",
+      "description": "End-to-end color management and workflow automation for commercial printing, flexible packaging, labels, corrugated, and folding carton operations.",
+      "image": "/images/industries/print-packaging.jpg",
+      "solutions": ["Color standardization (G7 / ISO 12647)", "Automated prepress workflows", "Inline and offline measurement", "Press fingerprinting", "Ink formulation and management"]
+    },
+    {
+      "slug": "paints-coatings",
+      "name": "Paints & Coatings",
+      "icon": "Paintbrush",
+      "description": "Spectrophotometric color matching, formulation, and QC for paint manufacturers, coatings producers, and industrial finishers.",
+      "image": "/images/industries/paints-coatings.jpg",
+      "solutions": ["Formulation spectrophotometry", "Color matching systems", "Batch QC measurement", "Standards library management", "Supplier color communication"]
+    },
+    {
+      "slug": "plastics",
+      "name": "Plastics & Polymers",
+      "icon": "Layers",
+      "description": "Color measurement and formulation for masterbatch producers, injection moulders, and plastic component manufacturers requiring consistent, traceable color.",
+      "image": "/images/industries/plastics.jpg",
+      "solutions": ["Opaque and transparent measurement", "Masterbatch formulation", "Metamerism evaluation", "Inter-plant color communication", "QC process integration"]
+    },
+    {
+      "slug": "textiles",
+      "name": "Textiles & Apparel",
+      "icon": "Shirt",
+      "description": "Color communication and QC for fabric mills, garment manufacturers, and brand supply chains requiring tight color tolerances across materials and suppliers.",
+      "image": "/images/industries/textiles.jpg",
+      "solutions": ["Fabric spectrophotometry", "Digital color standards", "Supplier approval workflows", "Lab-dip assessment", "Wash-fastness tracking"]
+    },
+    {
+      "slug": "industrial",
+      "name": "Industrial Manufacturing",
+      "icon": "Factory",
+      "description": "IoT shopfloor intelligence, OEE monitoring, and color QC for automotive, electronics, consumer goods, and general industrial manufacturers.",
+      "image": "/images/industries/industrial.jpg",
+      "solutions": ["Shopfloor IoT connectivity", "Real-time OEE dashboards", "Inline color measurement", "Predictive maintenance", "Production analytics"]
+    }
+  ],
+  "contact": {
+    "offices": [
+      {
+        "city": "Dubai",
+        "country": "United Arab Emirates",
+        "address": "Unit 205, Business Bay Tower\nAl Abraj Street, Business Bay\nDubai, UAE",
+        "phone": "+971 4 000 0000",
+        "email": "dubai@example.com",
+        "mapUrl": "https://maps.google.com",
+        "isPrimary": true
+      },
+      {
+        "city": "Riyadh",
+        "country": "Saudi Arabia",
+        "address": "Office 12, Olaya District\nKing Fahd Road\nRiyadh, Saudi Arabia",
+        "phone": "+966 11 000 0000",
+        "email": "riyadh@example.com",
+        "mapUrl": "https://maps.google.com",
+        "isPrimary": false
+      }
+    ],
+    "whatsapp": "+971 4 000 0000"
+  },
+  "footer": {
+    "description": "Phoenix Colour Technologies is the leading color management and workflow automation partner for manufacturers and print operations across the UAE, GCC, Africa, and Asia.",
+    "links": {
+      "company": [
+        { "label": "About Us", "href": "/about" },
+        { "label": "Services", "href": "/services" },
+        { "label": "Contact", "href": "/contact" }
+      ],
+      "solutions": [
+        { "label": "Print & Packaging", "href": "/print-packaging" },
+        { "label": "Industrial", "href": "/industrial" },
+        { "label": "Color Management", "href": "/services" }
+      ],
+      "products": [
+        { "label": "All Brands", "href": "/products" },
+        { "label": "X-Rite", "href": "/products/x-rite" },
+        { "label": "GMG", "href": "/products/gmg" },
+        { "label": "Pantone", "href": "/products/pantone" }
+      ]
+    }
+  }
+}
+```
+
+### 11. Create directory structure
+Run these PowerShell commands to create all needed directories:
+```powershell
+# Create src structure (move app)
+New-Item -ItemType Directory -Path "C:\phoenix\src" -Force
+Move-Item "C:\phoenix\app" "C:\phoenix\src\app" -Force
+Move-Item "C:\phoenix\public" "C:\phoenix\public" -ErrorAction SilentlyContinue
+
+# Create additional directories
+New-Item -ItemType Directory -Path "C:\phoenix\src\components\layout" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\src\components\catalog" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\src\components\product" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\src\components\ui" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\src\data" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\src\lib\repositories" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\src\types" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\src\styles" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\content-intake" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\public\images\hero" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\public\images\brands" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\public\images\categories" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\public\images\products" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\public\images\industries" -Force
+New-Item -ItemType Directory -Path "C:\phoenix\public\downloads" -Force
+```
+
+### 12. src/styles/globals.css
+The scaffold's globals.css is at C:\phoenix\src\app\globals.css. Move it to C:\phoenix\src\styles\globals.css and update its import in layout.tsx.
+
+Create C:\phoenix\src\styles\globals.css:
+```css
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN TOKENS — CSS Custom Properties
+   ============================================ */
+@layer base {
+  :root {
+    /* Brand Colors */
+    --color-navy: 15 23 66;          /* #0F1742 */
+    --color-navy-light: 22 35 90;    /* #16235A */
+    --color-crimson: 196 30 58;      /* #C41E3A */
+    --color-violet: 88 28 135;       /* #581C87 */
+    --color-gold: 234 179 8;         /* #EAB308 */
+
+    /* Semantic */
+    --color-bg: 255 255 255;
+    --color-surface: 248 249 252;
+    --color-border: 226 232 240;
+    --color-text: 15 23 42;
+    --color-text-muted: 100 116 139;
+
+    /* Gradients */
+    --gradient-brand: linear-gradient(135deg, rgb(196 30 58) 0%, rgb(88 28 135) 100%);
+    --gradient-hero: linear-gradient(135deg, rgb(15 23 66 / 0.9) 0%, rgb(15 23 66 / 0.6) 100%);
+    --gradient-card: linear-gradient(to top, rgb(15 23 66 / 0.95) 0%, rgb(15 23 66 / 0.4) 100%);
+
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.07);
+    --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.1), 0 2px 6px -2px rgb(0 0 0 / 0.07);
+    --shadow-lg: 0 10px 30px -5px rgb(0 0 0 / 0.12), 0 4px 12px -4px rgb(0 0 0 / 0.08);
+    --shadow-xl: 0 20px 50px -10px rgb(0 0 0 / 0.18);
+
+    /* Typography scale */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+
+    /* Spacing */
+    --header-height: 72px;
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    color: rgb(var(--color-text));
+    background: rgb(var(--color-bg));
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-crimson));
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgb(var(--color-crimson) / 0.15);
+    color: rgb(var(--color-navy));
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-brand {
+    background: var(--gradient-brand);
+  }
+
+  .border-gradient {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .card-hover {
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .nav-link {
+    position: relative;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-brand);
+    transition: width var(--transition-base);
+  }
+
+  .nav-link:hover::after,
+  .nav-link[data-active="true"]::after {
+    width: 100%;
+  }
+
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+
+  .container-wide {
+    width: 100%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-wide {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-wide {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+}
+
+/* ============================================
+   COMPONENT BASE STYLES
+   ============================================ */
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: var(--gradient-brand);
+    color: white;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgb(196 30 58 / 0.35);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+    border-radius: var(--radius-full);
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-outline:hover {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: transparent;
+    color: rgb(var(--color-navy));
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+    border-radius: var(--radius-full);
+    border: 1.5px solid rgb(var(--color-crimson));
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-outline-dark:hover {
+    background: rgb(var(--color-crimson));
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  /* Category card hover overlay */
+  .category-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+  }
+
+  .category-card .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-card);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    color: white;
+  }
+
+  .category-card:hover .card-overlay,
+  .category-card:focus-within .card-overlay {
+    opacity: 1;
+  }
+
+  @media (hover: none) {
+    .category-card .card-overlay {
+      opacity: 1;
+    }
+  }
+}
+```
+
+### 13. Root layout (src/app/layout.tsx)
+Overwrite C:\phoenix\src\app\layout.tsx:
+```typescript
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "@/styles/globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { WhatsAppFab } from "@/components/ui/WhatsAppFab";
+import { ScrollTop } from "@/components/ui/ScrollTop";
+import { siteConfig } from "@/lib/config";
+import siteContent from "@/data/site-content.json";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.name,
+    locale: "en_AE",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={`${inter.variable} h-full scroll-smooth`}>
+      <body className="min-h-full flex flex-col bg-white antialiased">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <WhatsAppFab phoneNumber={siteConfig.whatsappNumber} />
+        <ScrollTop />
+      </body>
+    </html>
+  );
+}
+```
+
+### 14. Root page (src/app/page.tsx) — placeholder for now
+Create C:\phoenix\src\app\page.tsx:
+```typescript
+import { Suspense } from "react";
+
+export default function HomePage() {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[rgb(15,23,66)] to-[rgb(15,23,90)]">
+      <div className="text-center text-white">
+        <div className="text-6xl font-bold mb-4 text-gradient" style={{ background: "linear-gradient(135deg, #C41E3A, #581C87)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+          Phoenix Colour Technologies
+        </div>
+        <p className="text-xl text-white/70">Build in progress — Phase 1</p>
+      </div>
+    </div>
+  );
+}
+```
+
+### 15. Header Component
+Create C:\phoenix\src\components\layout\Header.tsx:
+This should be a complex client component with:
+- Logo centered
+- Left nav: About, Products (with mega menu trigger), Print & Packaging
+- Right nav: Industrial, Contact, Services, Search icon
+- Transparent on top, solid navy on scroll
+- Mobile: hamburger → slide-in drawer
+
+```typescript
+"use client";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { Menu, X, Search, ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/config";
+import { MegaMenu } from "./MegaMenu";
+import { MobileNav } from "./MobileNav";
+
+export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const megaTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 20);
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  useEffect(() => {
+    setMegaOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Close mega menu on outside click
+  useEffect(() => {
+    if (!megaOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setMegaOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [megaOpen]);
+
+  // Close on Esc
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMegaOpen(false);
+        setMobileOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
+
+  const handleProductsEnter = useCallback(() => {
+    if (megaTimeout.current) clearTimeout(megaTimeout.current);
+    setMegaOpen(true);
+  }, []);
+
+  const handleProductsLeave = useCallback(() => {
+    megaTimeout.current = setTimeout(() => setMegaOpen(false), 150);
+  }, []);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const headerBg = scrolled || megaOpen || mobileOpen
+    ? "bg-[rgb(15,23,66)] shadow-lg backdrop-blur-sm"
+    : "bg-transparent";
+
+  return (
+    <>
+      <header
+        ref={headerRef}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          headerBg
+        )}
+        style={{ height: "var(--header-height)" }}
+      >
+        <div className="container-wide h-full flex items-center justify-between">
+          {/* Left nav */}
+          <nav
+            className="hidden lg:flex items-center gap-8"
+            aria-label="Primary left navigation"
+          >
+            {siteConfig.nav.left.map((item) =>
+              item.hasMegaMenu ? (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={handleProductsEnter}
+                  onMouseLeave={handleProductsLeave}
+                >
+                  <button
+                    className={cn(
+                      "nav-link text-white flex items-center gap-1",
+                      isActive(item.href) && "opacity-100"
+                    )}
+                    data-active={isActive(item.href) ? "true" : "false"}
+                    onClick={() => setMegaOpen((p) => !p)}
+                    aria-expanded={megaOpen}
+                    aria-haspopup="true"
+                  >
+                    {item.label}
+                    <ChevronDown
+                      className={cn(
+                        "w-4 h-4 transition-transform duration-200",
+                        megaOpen && "rotate-180"
+                      )}
+                    />
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "nav-link text-white",
+                    isActive(item.href) && "opacity-100"
+                  )}
+                  data-active={isActive(item.href) ? "true" : "false"}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+          </nav>
+
+          {/* Centered logo */}
+          <Link
+            href="/"
+            className="flex-shrink-0 flex items-center gap-2"
+            aria-label="Phoenix Colour Technologies — home"
+          >
+            <Image
+              src="/logo.svg"
+              alt="Phoenix Colour Technologies"
+              width={180}
+              height={48}
+              className="h-10 w-auto"
+              priority
+            />
+          </Link>
+
+          {/* Right nav */}
+          <div className="hidden lg:flex items-center gap-8">
+            <nav
+              className="flex items-center gap-8"
+              aria-label="Primary right navigation"
+            >
+              {siteConfig.nav.right.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "nav-link text-white",
+                    isActive(item.href) && "opacity-100"
+                  )}
+                  data-active={isActive(item.href) ? "true" : "false"}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <Link
+              href="/search"
+              className="text-white/70 hover:text-white transition-colors"
+              aria-label="Search"
+            >
+              <Search className="w-5 h-5" />
+            </Link>
+          </div>
+
+          {/* Mobile controls */}
+          <div className="lg:hidden flex items-center gap-3">
+            <Link
+              href="/search"
+              className="text-white/70 hover:text-white transition-colors"
+              aria-label="Search"
+            >
+              <Search className="w-5 h-5" />
+            </Link>
+            <button
+              onClick={() => setMobileOpen((p) => !p)}
+              className="text-white p-1"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mega menu (desktop) */}
+        {megaOpen && (
+          <div
+            onMouseEnter={handleProductsEnter}
+            onMouseLeave={handleProductsLeave}
+          >
+            <MegaMenu onClose={() => setMegaOpen(false)} />
+          </div>
+        )}
+      </header>
+
+      {/* Mobile nav drawer */}
+      <MobileNav isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
+
+      {/* Spacer for fixed header (only on non-hero pages) */}
+      <div className="h-[var(--header-height)]" aria-hidden="true" style={{ display: 'none' }} id="header-spacer" />
+    </>
+  );
+}
+```
+
+### 16. MegaMenu Component
+Create C:\phoenix\src\components\layout\MegaMenu.tsx:
+```typescript
+import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+// Brand data for the mega menu — 21 brands in 3 rows of 7
+const MEGA_BRANDS = [
+  { name: "X-Rite", slug: "x-rite", logo: "/images/brands/x-rite.svg" },
+  { name: "GMG", slug: "gmg", logo: "/images/brands/gmg.svg" },
+  { name: "GlobalVision", slug: "globalvision", logo: "/images/brands/globalvision.svg" },
+  { name: "Hybrid Software", slug: "hybrid-software", logo: "/images/brands/hybrid-software.svg" },
+  { name: "Phoenix M.I.S + IoT", slug: "phoenix-mis-iot", logo: "/images/brands/phoenix-mis-iot.svg" },
+  { name: "Miraclon", slug: "miraclon", logo: "/images/brands/miraclon.svg" },
+  { name: "EIZO", slug: "eizo", logo: "/images/brands/eizo.svg" },
+  { name: "Valiani", slug: "valiani", logo: "/images/brands/valiani.svg" },
+  { name: "IGT", slug: "igt", logo: "/images/brands/igt.svg" },
+  { name: "Inkmaker", slug: "inkmaker", logo: "/images/brands/inkmaker.svg" },
+  { name: "Just Normlicht", slug: "just-normlicht", logo: "/images/brands/just-normlicht.svg" },
+  { name: "Hanatek Instruments", slug: "hanatek-instruments", logo: "/images/brands/hanatek.svg" },
+  { name: "Siegwerk", slug: "siegwerk", logo: "/images/brands/siegwerk.svg" },
+  { name: "Apex International", slug: "apex-international", logo: "/images/brands/apex.svg" },
+  { name: "Epson", slug: "epson", logo: "/images/brands/epson.svg" },
+  { name: "Luster", slug: "luster", logo: "/images/brands/luster.svg" },
+  { name: "Pantone", slug: "pantone", logo: "/images/brands/pantone.svg" },
+  { name: "EngView Systems", slug: "engview-systems", logo: "/images/brands/engview.svg" },
+  { name: "PrintFactory", slug: "printfactory", logo: "/images/brands/printfactory.svg" },
+  { name: "ECO3", slug: "eco3", logo: "/images/brands/eco3.svg" },
+  { name: "StudioRIP", slug: "studiorip", logo: "/images/brands/studiorip.svg" },
+];
+
+interface MegaMenuProps {
+  onClose: () => void;
+}
+
+export function MegaMenu({ onClose }: MegaMenuProps) {
+  return (
+    <div
+      className="absolute top-full left-0 right-0 bg-[rgb(15,23,66)/0.97] backdrop-blur-md border-t border-white/10 shadow-2xl"
+      role="navigation"
+      aria-label="Products mega menu"
+    >
+      <div className="container-wide py-6">
+        <div className="flex items-center justify-between mb-5">
+          <p className="text-white/50 text-xs font-semibold uppercase tracking-widest">
+            Our Brands
+          </p>
+          <Link
+            href="/products"
+            onClick={onClose}
+            className="text-xs font-semibold text-white/60 hover:text-white transition-colors uppercase tracking-wider"
+          >
+            View All →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-7 gap-3">
+          {MEGA_BRANDS.map((brand) => (
+            <Link
+              key={brand.slug}
+              href={`/products/${brand.slug}`}
+              onClick={onClose}
+              className={cn(
+                "group flex items-center justify-center",
+                "bg-white/8 hover:bg-white/15 rounded-xl p-3 h-16",
+                "transition-all duration-200 border border-white/5 hover:border-white/20"
+              )}
+              aria-label={`${brand.name} products`}
+            >
+              {/* Fallback text logo if SVG missing */}
+              <span className="text-white font-semibold text-xs text-center leading-tight group-hover:scale-105 transition-transform duration-200">
+                {brand.name}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+### 17. MobileNav Component
+Create C:\phoenix\src\components\layout\MobileNav.tsx:
+```typescript
+"use client";
+
+import { useEffect } from "react";
+import Link from "next/link";
+import { X, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/config";
+
+interface MobileNavProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const ALL_NAV = [...siteConfig.nav.left, ...siteConfig.nav.right];
+
+export function MobileNav({ isOpen, onClose }: MobileNavProps) {
+  // Lock body scroll when open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        className={cn(
+          "fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden transition-opacity duration-300",
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+        onClick={onClose}
+        aria-hidden="true"
+      />
+
+      {/* Drawer */}
+      <div
+        className={cn(
+          "fixed top-0 right-0 bottom-0 z-50 w-80 bg-[rgb(15,23,66)] lg:hidden",
+          "transition-transform duration-300 ease-in-out shadow-2xl",
+          isOpen ? "translate-x-0" : "translate-x-full"
+        )}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-5 border-b border-white/10">
+          <span className="text-white font-semibold">Menu</span>
+          <button
+            onClick={onClose}
+            className="text-white/70 hover:text-white transition-colors"
+            aria-label="Close menu"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Nav links */}
+        <nav className="p-5 space-y-1" aria-label="Mobile navigation">
+          {ALL_NAV.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onClose}
+              className="flex items-center justify-between text-white/80 hover:text-white hover:bg-white/8 px-4 py-3 rounded-lg transition-colors group"
+            >
+              <span className="font-medium">{item.label}</span>
+              <ChevronRight className="w-4 h-4 text-white/40 group-hover:text-white/70 transition-colors" />
+            </Link>
+          ))}
+        </nav>
+
+        {/* CTA */}
+        <div className="p-5 border-t border-white/10 mt-4">
+          <Link
+            href="/contact"
+            onClick={onClose}
+            className="btn-primary w-full justify-center"
+          >
+            Request a Quote
+          </Link>
+          <p className="text-white/40 text-xs text-center mt-4">
+            {siteConfig.contact.phone}
+          </p>
+        </div>
+      </div>
+    </>
+  );
+}
+```
+
+### 18. Footer Component
+Create C:\phoenix\src\components\layout\Footer.tsx:
+```typescript
+import Link from "next/link";
+import Image from "next/image";
+import { Linkedin, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { siteConfig } from "@/lib/config";
+import siteContent from "@/data/site-content.json";
+
+const { footer, contact } = siteContent;
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-[rgb(15,23,66)] text-white/80">
+      {/* Main footer */}
+      <div className="container-wide py-16 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          {/* Brand column */}
+          <div className="lg:col-span-2">
+            <Link href="/" aria-label="Phoenix Colour Technologies home">
+              <Image
+                src="/logo.svg"
+                alt="Phoenix Colour Technologies"
+                width={160}
+                height={42}
+                className="h-10 w-auto mb-5 brightness-0 invert"
+              />
+            </Link>
+            <p className="text-sm leading-relaxed text-white/60 mb-6 max-w-sm">
+              {footer.description}
+            </p>
+            {/* Social links */}
+            <div className="flex gap-3">
+              {[
+                { href: siteConfig.social.linkedin, icon: Linkedin, label: "LinkedIn" },
+                { href: siteConfig.social.twitter, icon: Twitter, label: "Twitter" },
+                { href: siteConfig.social.instagram, icon: Instagram, label: "Instagram" },
+                { href: siteConfig.social.youtube, icon: Youtube, label: "YouTube" },
+              ].map(({ href, icon: Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Company links */}
+          <div>
+            <h3 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">
+              Company
+            </h3>
+            <ul className="space-y-3">
+              {footer.links.company.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-white/60 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Solutions links */}
+          <div>
+            <h3 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">
+              Solutions
+            </h3>
+            <ul className="space-y-3">
+              {footer.links.solutions.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-white/60 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact info */}
+          <div>
+            <h3 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">
+              Contact
+            </h3>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 text-white/40 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-white/60 leading-relaxed">
+                  {contact.offices[0].address.replace(/\n/g, ", ")}
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-white/40 flex-shrink-0" />
+                <a
+                  href={`tel:${contact.offices[0].phone.replace(/\s/g, "")}`}
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                >
+                  {contact.offices[0].phone}
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-white/40 flex-shrink-0" />
+                <a
+                  href={`mailto:${contact.offices[0].email}`}
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                >
+                  {contact.offices[0].email}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/10">
+        <div className="container-wide py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-white/40">
+            © {currentYear} Phoenix Colour Technologies. All rights reserved.
+          </p>
+          <div className="flex gap-5 text-xs text-white/40">
+            <Link href="/privacy" className="hover:text-white/70 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-white/70 transition-colors">
+              Terms of Use
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+```
+
+### 19. WhatsApp FAB
+Create C:\phoenix\src\components\ui\WhatsAppFab.tsx:
+```typescript
+"use client";
+
+import { MessageCircle } from "lucide-react";
+
+interface WhatsAppFabProps {
+  phoneNumber: string;
+}
+
+export function WhatsAppFab({ phoneNumber }: WhatsAppFabProps) {
+  const href = `https://wa.me/${phoneNumber}?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20Phoenix%20Colour%20Technologies%20products.`;
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-200 hover:scale-110 focus-visible:ring-4 focus-visible:ring-[#25D366]/40"
+    >
+      <MessageCircle className="w-7 h-7" fill="white" />
+    </a>
+  );
+}
+```
+
+### 20. Scroll To Top
+Create C:\phoenix\src\components\ui\ScrollTop.tsx:
+```typescript
+"use client";
+
+import { useState, useEffect } from "react";
+import { ArrowUp } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+export function ScrollTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setVisible(window.scrollY > 400);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <button
+      onClick={scrollToTop}
+      aria-label="Scroll to top"
+      className={cn(
+        "fixed bottom-24 right-6 z-50 w-10 h-10 rounded-full shadow-md",
+        "bg-[rgb(15,23,66)] text-white flex items-center justify-center",
+        "transition-all duration-300 hover:bg-[rgb(196,30,58)] hover:scale-110",
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+      )}
+    >
+      <ArrowUp className="w-5 h-5" />
+    </button>
+  );
+}
+```
+
+### 21. Stub pages for routing
+Create these minimal stub pages so the build doesn't fail:
+
+C:\phoenix\src\app\about\page.tsx:
+```typescript
+export default function AboutPage() {
+  return <div className="pt-[var(--header-height)] min-h-screen flex items-center justify-center"><p className="text-2xl text-gray-500">About — coming in Phase 3</p></div>;
+}
+```
+
+C:\phoenix\src\app\products\page.tsx:
+```typescript
+export default function ProductsPage() {
+  return <div className="pt-[var(--header-height)] min-h-screen flex items-center justify-center"><p className="text-2xl text-gray-500">Products — coming in Phase 2</p></div>;
+}
+```
+
+C:\phoenix\src\app\products\[brand]\page.tsx - need to create the [brand] directory first.
+C:\phoenix\src\app\contact\page.tsx
+C:\phoenix\src\app\services\page.tsx
+C:\phoenix\src\app\print-packaging\page.tsx
+C:\phoenix\src\app\industrial\page.tsx
+C:\phoenix\src\app\search\page.tsx
+C:\phoenix\src\app\not-found.tsx
+C:\phoenix\src\app\error.tsx
+
+Each stub returns a centered placeholder div.
+
+For not-found.tsx:
+```typescript
+import Link from "next/link";
+
+export default function NotFound() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[rgb(15,23,66)]">
+      <div className="text-center text-white">
+        <div className="text-8xl font-bold text-gradient mb-4" style={{ background: "linear-gradient(135deg, #C41E3A, #581C87)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>404</div>
+        <h1 className="text-2xl font-semibold mb-3">Page not found</h1>
+        <p className="text-white/60 mb-8">The page you are looking for does not exist.</p>
+        <Link href="/" className="btn-primary">Return Home</Link>
+      </div>
+    </div>
+  );
+}
+```
+
+For error.tsx:
+```typescript
+"use client";
+export default function Error({ reset }: { reset: () => void }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <h2 className="text-2xl font-semibold mb-4">Something went wrong</h2>
+        <button onClick={reset} className="btn-primary">Try again</button>
+      </div>
+    </div>
+  );
+}
+```
+
+### 22. Products [brand] and [...path] stubs
+Create C:\phoenix\src\app\products\[brand]\page.tsx:
+```typescript
+export default function BrandPage({ params }: { params: Promise<{ brand: string }> }) {
+  return <div className="pt-[var(--header-height)] min-h-screen flex items-center justify-center"><p className="text-2xl text-gray-500">Brand page — Phase 2</p></div>;
+}
+```
+
+Create C:\phoenix\src\app\products\[brand]\[...path]\page.tsx:
+```typescript
+export default function CatalogPage({ params }: { params: Promise<{ brand: string; path: string[] }> }) {
+  return <div className="pt-[var(--header-height)] min-h-screen flex items-center justify-center"><p className="text-2xl text-gray-500">Catalog — Phase 2</p></div>;
+}
+```
+
+### 23. API Route stubs
+Create C:\phoenix\src\app\api\enquiry\route.ts:
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  console.log("[ENQUIRY DEMO]", JSON.stringify(body, null, 2));
+  return NextResponse.json({ success: true, message: "Enquiry received (demo mode)" });
+}
+```
+
+Create C:\phoenix\src\app\api\search\route.ts:
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(req: NextRequest) {
+  const q = req.nextUrl.searchParams.get("q") ?? "";
+  return NextResponse.json({ query: q, results: [], total: 0 });
+}
+```
+
+### 24. Content Intake Files
+Create C:\phoenix\content-intake\README.md with full instructions about demo data replacement.
+
+Create C:\phoenix\content-intake\brand-template.json, category-template.json, series-template.json, product-template.json with full templates matching the TypeScript types.
+
+### 25. Logo SVG placeholder
+Create C:\phoenix\public\logo.svg using the SVG that already exists in C:\phoenix\ref\Header-Logo.svg - copy it to public/logo.svg.
+
+Read the file first and copy it.
+
+### 26. Dummy PDF for brochure downloads
+Create C:\phoenix\public\downloads\phoenix-demo-brochure.pdf as a 1-byte placeholder (just create an empty text file with .pdf extension for demo purposes).
+
+### EXECUTION ORDER:
+1. Run the PowerShell directory creation commands
+2. Write all the TypeScript/TSX files in order
+3. Copy the logo SVG from ref to public
+4. Run `pnpm install` (with BypassSandbox true) from C:\phoenix
+5. Run `pnpm build` from C:\phoenix and fix any TypeScript errors
+6. Report back with: list of files created, any errors encountered, and the final build status
+
+### KEY NOTES:
+- Next.js 16 uses Tailwind v4 which is CSS-import based (no tailwind.config.ts needed)
+- The globals.css uses @import "tailwindcss" not @tailwind directives
+- Next.js 16 with App Router: params in page components are Promise<...> and need to be awaited
+- Use `import "@/styles/globals.css"` in layout.tsx (not app/globals.css)
+- The app directory is at src/app after the restructure
+- All component files use .tsx extension
+- WhatsAppFab and ScrollTop need "use client" 
+- Header needs "use client" (uses useState, useEffect)
+- MobileNav needs "use client"
+- MegaMenu can be server component (no state) - but it's imported by Header which is client, so it can be either
+- Footer can be server component
+- The layout.tsx imports Header, Footer, WhatsAppFab, ScrollTop - these must exist before build
+
+REPORT BACK when done with the full list of files created and final `pnpm build` output.
+

@@ -1,0 +1,10 @@
+{
+  "id": "brand-slug-series-slug",
+  "slug": "series-slug",
+  "categoryId": "brand-slug-category-slug",
+  "brandId": "brand-slug",
+  "name": "Series Name",
+  "image": "/images/products/series-name.jpg",
+  "description": "Comprehensive description of the product family, shared architecture, and target operations.",
+  "isDemoData": false
+}

@@ -1,0 +1,14 @@
+{
+  "id": "brand-slug-category-slug",
+  "slug": "category-slug",
+  "brandId": "brand-slug",
+  "name": "Category Display Name",
+  "image": "/images/categories/category-name.jpg",
+  "description": "Detailed description of the solutions, equipment, or software suites grouped in this category.",
+  "hasSeries": true,
+  "seriesIds": [
+    "brand-slug-series-slug-1",
+    "brand-slug-series-slug-2"
+  ],
+  "isDemoData": false
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "exact-family",
+    "slug": "exact-family",
+    "categoryId": "xrite-cat-portable",
+    "brandId": "x-rite",
+    "name": "eXact™ Family of Portable Spectrophotometers and Densitometers",
+    "description": "With innovative features like Mantis™ video targeting and Digital Loupe zoom technology, eXact 2 is the ideal choice for printers, converters, and ink suppliers.",
+    "image": "/images/series/exact-family.webp"
+  },
+  {
+    "id": "ci6x-series",
+    "slug": "ci6x-series",
+    "categoryId": "xrite-cat-portable",
+    "brandId": "x-rite",
+    "name": "Ci6X Series Sphere Handheld Spectrophotometers",
+    "description": "Measure colour anywhere with portable spectrophotometers built for flexible quality control workflows across textured, metallic, and reflective industrial surfaces.",
+    "image": "/images/series/ci6x-series.webp"
+  },
+  {
+    "id": "multi-angle-series",
+    "slug": "x-rite-portable-multi-angle-spectrophotometers",
+    "categoryId": "xrite-cat-portable",
+    "brandId": "x-rite",
+    "name": "X-Rite Portable Multi-Angle Spectrophotometers",
+    "description": "Multi-angle measurement instruments specifically designed for effect finishes, metallic inks, and pearlescent coatings.",
+    "image": "/images/series/multi-angle.webp"
+  },
+  {
+    "id": "spectrocolorimeters-series",
+    "slug": "portable-spectrocolorimeters",
+    "categoryId": "xrite-cat-portable",
+    "brandId": "x-rite",
+    "name": "Portable Spectrocolorimeters",
+    "description": "Pocket-sized spectrocolorimeters for fast and easy color comparison in quality control inspections.",
+    "image": "/images/series/spectrocolorimeters.webp"
+  },
+  {
+    "id": "benchtop-sphere-spectrophotometers",
+    "slug": "benchtop-sphere-spectrophotometers",
+    "categoryId": "xrite-cat-benchtop",
+    "brandId": "x-rite",
+    "name": "Benchtop Sphere Spectrophotometers",
+    "description": "Highest precision sphere geometry benchtop spectrophotometers for critical master color standard formulation and global supply chains.",
+    "image": "/images/series/benchtop-sphere.webp"
+  },
+  {
+    "id": "compact-benchtop-spectrophotometers",
+    "slug": "compact",
+    "categoryId": "xrite-cat-benchtop",
+    "brandId": "x-rite",
+    "name": "Compact Benchtop Spectrophotometers",
+    "description": "Reliable, compact footprint benchtop instruments engineered for routine laboratory and industrial testing.",
+    "image": "/images/series/compact-benchtop.webp"
+  }
+]

@@ -1,0 +1,246 @@
+{
+  "isDemoData": true,
+  "company": {
+    "name": "Phoenix Colour Technologies",
+    "tagline": "Precision, performance, and intelligent manufacturing.",
+    "founded": 2007,
+    "foundedCity": "Dubai",
+    "stats": [
+      { "value": "20+", "label": "Years of Domain Expertise", "description": "Deep industry knowledge since 2007" },
+      { "value": "1,200+", "label": "Satisfied Clients", "description": "Across 20+ countries worldwide" },
+      { "value": "12–16", "label": "Month ROI Focus", "description": "Solutions engineered for fast, measurable returns" },
+      { "value": "20+", "label": "Countries Served", "description": "UAE, GCC, Saudi Arabia, Africa, Asia" }
+    ],
+    "regions": [
+      { "name": "United Arab Emirates", "city": "Dubai", "flag": "🇦🇪" },
+      { "name": "Saudi Arabia", "city": "Riyadh", "flag": "🇸🇦" },
+      { "name": "Kuwait", "city": "Kuwait City", "flag": "🇰🇼" },
+      { "name": "Qatar", "city": "Doha", "flag": "🇶🇦" },
+      { "name": "Bahrain", "city": "Manama", "flag": "🇧🇭" },
+      { "name": "Oman", "city": "Muscat", "flag": "🇴🇲" },
+      { "name": "Egypt", "city": "Cairo", "flag": "🇪🇬" },
+      { "name": "South Africa", "city": "Johannesburg", "flag": "🇿🇦" }
+    ]
+  },
+  "about": {
+    "headline": "Two Decades of Color Excellence",
+    "story": "Phoenix Colour Technologies was founded in Dubai in 2007 with a singular mission: to bring global color science standards to the dynamic and fast-growing markets of the Middle East, Africa, and Asia. What began as a specialist color management consultancy has grown into the region's most trusted partner for precision color, workflow automation, and intelligent manufacturing systems.\n\nOver twenty years, we have built deep expertise across the full color value chain — from spectrophotometric measurement and ICC profiling to press standardization, ink formulation, and shopfloor IoT intelligence. Our team of certified G7 Experts and ISO 12647 specialists brings the same rigor to a flexo press in Lagos as to a gravure line in Riyadh.\n\nToday, we support more than 1,200 companies in print and packaging, brand manufacturing, plastics, paints, textiles, and industrial manufacturing across 20+ countries. Every solution we deliver is engineered with one goal: measurable return on investment within 12 to 16 months.",
+    "vision": "To be the defining force for color accuracy and intelligent manufacturing across emerging markets — enabling every manufacturer, printer, and brand owner in our region to match the precision of the world's best production facilities.",
+    "mission": "We exist to close the gap between global color standards and regional manufacturing reality. We do this by combining best-in-class technology partnerships, certified domain expertise, and relentless after-sales support to deliver solutions that perform — on press, on the shopfloor, and on the balance sheet.",
+    "values": [
+      {
+        "icon": "Target",
+        "title": "Precision First",
+        "description": "We believe that measurement drives improvement. Every recommendation we make is grounded in data, standards, and repeatable science."
+      },
+      {
+        "icon": "Handshake",
+        "title": "Partnership Over Transactions",
+        "description": "We invest in long-term relationships. Our success is measured by our clients' outcomes, not by units shipped."
+      },
+      {
+        "icon": "Globe",
+        "title": "Global Standards, Regional Understanding",
+        "description": "We bring ISO, G7, and FOGRA standards to markets that need them most, with the cultural intelligence to make them stick."
+      },
+      {
+        "icon": "Lightbulb",
+        "title": "Continuous Innovation",
+        "description": "We stay at the cutting edge of color science, IoT, and workflow automation so our clients benefit from emerging capabilities before their competitors do."
+      },
+      {
+        "icon": "Shield",
+        "title": "Uncompromising Integrity",
+        "description": "We recommend only what we would use ourselves. Our clients trust us to be honest about fit, capability, and ROI."
+      }
+    ]
+  },
+  "hero": {
+    "slides": [
+      {
+        "headline": "Color That Performs.",
+        "headlineGradient": "Everywhere.",
+        "subtext": "Advanced color management and workflow automation for the Middle East, Africa, and Asia.",
+        "ctaLabel": "Explore Solutions",
+        "ctaHref": "/products",
+        "image": "/images/hero/banner-1.webp"
+      },
+      {
+        "headline": "Print Smarter.",
+        "headlineGradient": "Print Consistent.",
+        "subtext": "G7 and ISO 12647 process standardization for packaging and commercial print operations.",
+        "ctaLabel": "Print & Packaging Solutions",
+        "ctaHref": "/print-packaging",
+        "image": "/images/hero/banner-2.webp"
+      },
+      {
+        "headline": "Industrial Color.",
+        "headlineGradient": "Engineered Precise.",
+        "subtext": "From paints and plastics to textiles and coatings — color intelligence for every production environment.",
+        "ctaLabel": "Industrial Solutions",
+        "ctaHref": "/industrial",
+        "image": "/images/hero/banner-3.webp"
+      }
+    ]
+  },
+  "testimonials": [
+    {
+      "quote": "Phoenix Colour Technologies transformed our print standardization process. We achieved G7 Master certification within three months and reduced ink waste by 22%. Their team's expertise is genuinely world-class.",
+      "author": "Khalid Al-Mansouri",
+      "title": "Production Director",
+      "company": "Arabian Print Group (Demo)",
+      "industry": "Commercial Print"
+    },
+    {
+      "quote": "The X-Rite spectrophotometer solution recommended by Phoenix has given our QC lab capabilities we previously thought required a much larger investment. ROI was under 12 months.",
+      "author": "Priya Nambiar",
+      "title": "Quality Assurance Manager",
+      "company": "Gulf Packaging Industries (Demo)",
+      "industry": "Flexible Packaging"
+    },
+    {
+      "quote": "Implementing GMG ColorServer with Phoenix's guidance cut our press make-ready time by 35%. Their support team responds within hours — not days. Exceptional service.",
+      "author": "Jean-Pierre Dubois",
+      "title": "Prepress Manager",
+      "company": "Precision Labels MENA (Demo)",
+      "industry": "Label Printing"
+    },
+    {
+      "quote": "Phoenix Colour's IoT shopfloor solution gave us real-time visibility across our coating lines for the first time. The data drove a 15% improvement in first-pass quality.",
+      "author": "Amina Osei-Bonsu",
+      "title": "Operations Manager",
+      "company": "AfriPaint Manufacturing (Demo)",
+      "industry": "Paints & Coatings"
+    }
+  ],
+  "services": [
+    {
+      "icon": "Gauge",
+      "title": "Color Management Consulting",
+      "slug": "color-management",
+      "description": "From ICC profiling and G7 calibration to press standardization and ISO 12647 compliance — our certified experts diagnose, configure, and verify your color workflow from substrate to delivery.",
+      "features": ["G7 Expert-led calibration", "ICC profile creation & validation", "Press fingerprinting", "ISO 12647-2/6 audit & certification support", "Remote monitoring packages"]
+    },
+    {
+      "icon": "Workflow",
+      "title": "Workflow Automation",
+      "slug": "workflow-automation",
+      "description": "Eliminate manual touchpoints and reduce errors across prepress, production, and shipping. We design, install, and support end-to-end automation using best-in-class platforms.",
+      "features": ["MIS/ERP integration", "JDF/JMF job ticketing", "Automated preflight & proofing", "Web-to-print portals", "Shopfloor data capture"]
+    },
+    {
+      "icon": "BarChart3",
+      "title": "Spectrophotometric Measurement",
+      "slug": "measurement",
+      "description": "Instrument selection, installation, and ongoing calibration services for the full X-Rite and Hanatek portfolio. We ensure your measurement data is accurate, consistent, and traceable.",
+      "features": ["Instrument selection advisory", "On-site installation & training", "Preventive maintenance contracts", "Inter-instrument agreement programs", "Calibration traceability documentation"]
+    },
+    {
+      "icon": "Cpu",
+      "title": "IoT Shopfloor Intelligence",
+      "slug": "iot-shopfloor",
+      "description": "Real-time production monitoring, OEE tracking, and predictive maintenance for print and industrial manufacturing environments.",
+      "features": ["Machine connectivity (OPC-UA, MQTT)", "Real-time OEE dashboards", "Scrap & waste analytics", "Predictive maintenance alerts", "ERP data synchronization"]
+    },
+    {
+      "icon": "GraduationCap",
+      "title": "Training & Certification",
+      "slug": "training",
+      "description": "Structured training programmes for press operators, QC technicians, and prepress professionals — including G7 Expert preparation and X-Rite product certification.",
+      "features": ["G7 Expert preparation courses", "X-Rite certified training", "ISO 12647 operator workshops", "Custom on-site training", "Online learning modules"]
+    },
+    {
+      "icon": "Wrench",
+      "title": "After-Sales Support",
+      "slug": "support",
+      "description": "Regional support desks, SLA-backed response times, spare parts inventory, and annual maintenance contracts to keep your investment performing.",
+      "features": ["Same/next-day response SLAs", "Remote diagnostic support", "Spare parts availability", "Annual maintenance contracts", "Upgrade advisory services"]
+    }
+  ],
+  "industries": [
+    {
+      "slug": "print-packaging",
+      "name": "Print & Packaging",
+      "icon": "Package",
+      "description": "End-to-end color management and workflow automation for commercial printing, flexible packaging, labels, corrugated, and folding carton operations.",
+      "image": "/images/industries/print-packaging.webp",
+      "solutions": ["Color standardization (G7 / ISO 12647)", "Automated prepress workflows", "Inline and offline measurement", "Press fingerprinting", "Ink formulation and management"]
+    },
+    {
+      "slug": "paints-coatings",
+      "name": "Paints & Coatings",
+      "icon": "Paintbrush",
+      "description": "Spectrophotometric color matching, formulation, and QC for paint manufacturers, coatings producers, and industrial finishers.",
+      "image": "/images/industries/paints-coatings.jpg",
+      "solutions": ["Formulation spectrophotometry", "Color matching systems", "Batch QC measurement", "Standards library management", "Supplier color communication"]
+    },
+    {
+      "slug": "plastics",
+      "name": "Plastics & Polymers",
+      "icon": "Layers",
+      "description": "Color measurement and formulation for masterbatch producers, injection moulders, and plastic component manufacturers requiring consistent, traceable color.",
+      "image": "/images/industries/plastics.jpg",
+      "solutions": ["Opaque and transparent measurement", "Masterbatch formulation", "Metamerism evaluation", "Inter-plant color communication", "QC process integration"]
+    },
+    {
+      "slug": "textiles",
+      "name": "Textiles & Apparel",
+      "icon": "Shirt",
+      "description": "Color communication and QC for fabric mills, garment manufacturers, and brand supply chains requiring tight color tolerances across materials and suppliers.",
+      "image": "/images/industries/textiles.jpg",
+      "solutions": ["Fabric spectrophotometry", "Digital color standards", "Supplier approval workflows", "Lab-dip assessment", "Wash-fastness tracking"]
+    },
+    {
+      "slug": "industrial",
+      "name": "Industrial Manufacturing",
+      "icon": "Factory",
+      "description": "IoT shopfloor intelligence, OEE monitoring, and color QC for automotive, electronics, consumer goods, and general industrial manufacturers.",
+      "image": "/images/industries/industrial.webp",
+      "solutions": ["Shopfloor IoT connectivity", "Real-time OEE dashboards", "Inline color measurement", "Predictive maintenance", "Production analytics"]
+    }
+  ],
+  "contact": {
+    "offices": [
+      {
+        "city": "Dubai",
+        "country": "United Arab Emirates",
+        "address": "PO Box 391759, Warehouse 3B Plot No 368-0140\nBehind Hyundai Showroom, Al Quoz 3\nDubai, UAE",
+        "phone": "+971 50 754 4559",
+        "email": "sales@phoenixtecsol.com",
+        "mapUrl": "https://maps.google.com/?q=Al+Quoz+3+Dubai",
+        "isPrimary": true
+      },
+      {
+        "city": "Navi Mumbai",
+        "country": "India",
+        "address": "Farb CMS Tech LLP, #1301, 13th Floor, CBD 61 Four\nGreenscape Shakti V, Plot No.12, Sector 15\nCBD Belapur, Navi Mumbai, Maharashtra-400614, India",
+        "phone": "+971 50 754 4559",
+        "email": "sales@phoenixtecsol.com",
+        "mapUrl": "https://maps.google.com/?q=CBD+Belapur+Navi+Mumbai",
+        "isPrimary": false
+      }
+    ],
+    "whatsapp": "+971 50 754 4559"
+  },
+  "footer": {
+    "description": "Phoenix Colour Technologies is the leading color management and workflow automation partner for manufacturers and print operations across the UAE, GCC, Africa, and Asia.",
+    "links": {
+      "company": [
+        { "label": "About Us", "href": "/about" },
+        { "label": "Services", "href": "/services" },
+        { "label": "Contact", "href": "/contact" }
+      ],
+      "solutions": [
+        { "label": "Print & Packaging", "href": "/print-packaging" },
+        { "label": "Industrial", "href": "/industrial" },
+        { "label": "Color Management", "href": "/services" }
+      ],
+      "products": [
+        { "label": "All Brands", "href": "/products" },
+        { "label": "X-Rite", "href": "/products/x-rite" },
+        { "label": "GMG", "href": "/products/gmg" },
+        { "label": "Pantone", "href": "/products/pantone" }
+      ]
+    }
+  }
+}
