@@ -101,15 +101,6 @@ interface DigitReelProps {
 }
 
 function DigitReel({ targetDigit, isAnimating, duration, delay }: DigitReelProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => {
-      setMounted(true);
-    });
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
   // We create a reel strip of digits: 0 1 2 3 4 5 6 7 8 9 (repeated twice for realistic spin effect)
   // [0..9, 0..9, targetDigit]
   const strip = [
@@ -122,7 +113,7 @@ function DigitReel({ targetDigit, isAnimating, duration, delay }: DigitReelProps
   const finalIndex = strip.length - 1;
 
   // Each number takes 1em height
-  const translateY = (isAnimating && mounted) ? -(finalIndex / strip.length) * 100 : 0;
+  const translateY = isAnimating ? -finalIndex * 100 : 0;
 
   return (
     <span
@@ -132,7 +123,7 @@ function DigitReel({ targetDigit, isAnimating, duration, delay }: DigitReelProps
       <span
         className="block transition-transform will-change-transform"
         style={{
-          transform: `translateY(${translateY}%)`,
+          transform: `translateY(${translateY / strip.length}%)`,
           transitionDuration: `${duration}s`,
           transitionDelay: `${delay}s`,
           transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", // spring-like slot deceleration
@@ -147,3 +138,4 @@ function DigitReel({ targetDigit, isAnimating, duration, delay }: DigitReelProps
     </span>
   );
 }
+
