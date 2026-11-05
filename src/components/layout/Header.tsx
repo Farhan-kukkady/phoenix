@@ -68,9 +68,10 @@ export function Header() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  // Solid frosted luxury navy navbar everywhere — guarantees 100% high-contrast readability on white and dark backgrounds
   const headerBg = scrolled || megaOpen || mobileOpen
-    ? "bg-[rgb(15,23,66)/0.88] backdrop-blur-xl border-b border-white/10 shadow-2xl"
-    : "bg-transparent";
+    ? "bg-[rgb(15,23,66)/0.96] backdrop-blur-xl border-b border-white/10 shadow-2xl"
+    : "bg-[rgb(15,23,66)/0.92] backdrop-blur-xl border-b border-white/10 shadow-lg";
 
   return (
     <>
