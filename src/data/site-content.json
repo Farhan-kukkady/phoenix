@@ -233,7 +233,9 @@
       "solutions": [
         { "label": "Print & Packaging", "href": "/print-packaging" },
         { "label": "Industrial", "href": "/industrial" },
-        { "label": "Color Management", "href": "/services" }
+        { "label": "Color Management", "href": "/services" },
+        { "label": "AI Instrument Selector", "href": "/tools/selector" },
+        { "label": "Makeready ROI Calculator", "href": "/tools/roi-calculator" }
       ],
       "products": [
         { "label": "All Brands", "href": "/products" },

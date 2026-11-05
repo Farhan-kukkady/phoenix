@@ -11,6 +11,9 @@ import {
   BarChart3,
   Quote,
   CheckCircle2,
+  Calculator,
+  Sparkles,
+  TrendingUp,
 } from "lucide-react";
 import siteContent from "@/data/site-content.json";
 import { productRepository } from "@/lib/repositories/product-repository";
@@ -259,6 +262,125 @@ export default async function HomePage() {
                 seriesSlug={prod.seriesId}
               />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          INTERACTIVE AI TOOLS & PROFITABILITY MODELERS
+          ========================================================= */}
+      <section className="section-padding bg-slate-900 text-white relative overflow-hidden">
+        {/* Glow ambient background elements */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[radial-gradient(circle,rgba(196,30,58,0.25)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[radial-gradient(circle,rgba(16,185,129,0.18)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="container-wide relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-rose-300 border border-white/10 mb-3">
+                <Sparkles className="w-3.5 h-3.5 text-rose-400" />
+                AI Decision Engines
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mt-1">
+                Interactive Engineering Tools
+              </h2>
+            </div>
+            <Link
+              href="/tools"
+              className="inline-flex items-center gap-2 text-xs font-bold text-rose-400 hover:text-rose-300 hover:underline"
+            >
+              Explore Tools Hub <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Tool 1: AI Instrument & Substrate Selector */}
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-10 backdrop-blur-md flex flex-col justify-between hover:border-rose-500/40 hover:bg-white/[0.08] transition-all group shadow-xl">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
+                    <Cpu className="w-6 h-6" />
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-white/10 text-rose-300 text-xs font-semibold border border-white/10">
+                    3-Step Diagnostic
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-black text-white tracking-tight group-hover:text-rose-300 transition-colors">
+                    AI Instrument & Substrate Selector
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/70 mt-2 leading-relaxed">
+                    Which spectrophotometer fits your line? Select your substrate (paperboard, flexible foil, metallic film, plastics, or liquids) and get an engineered optical geometry recommendation with plain-English justification.
+                  </p>
+                </div>
+
+                <div className="space-y-2 pt-2 border-t border-white/10">
+                  <div className="flex items-center gap-2 text-xs text-white/80">
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 flex-shrink-0" />
+                    <span>Evaluates 45°:0°, Sphere d/8°, & Multi-Angle reflection</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-white/80">
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 flex-shrink-0" />
+                    <span>Direct match against X-Rite & GlobalVision certified devices</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-white/10">
+                <Link
+                  href="/tools/selector"
+                  className="btn-primary w-full text-center text-sm py-3.5 shadow-lg shadow-rose-950/40 justify-center"
+                >
+                  Launch Instrument Selector
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Tool 2: Makeready & Waste ROI Calculator */}
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-10 backdrop-blur-md flex flex-col justify-between hover:border-emerald-500/40 hover:bg-white/[0.08] transition-all group shadow-xl">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                    <Calculator className="w-6 h-6" />
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-white/10 text-emerald-300 text-xs font-semibold border border-white/10">
+                    USD / AED Modeler
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-black text-white tracking-tight group-hover:text-emerald-300 transition-colors">
+                    Makeready & Waste ROI Calculator
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/70 mt-2 leading-relaxed">
+                    Calculate your plant&apos;s annual substrate waste savings, recovered press capacity hours, and equipment payback period based on ISO 12647-2 and G7 industry benchmarks.
+                  </p>
+                </div>
+
+                <div className="space-y-2 pt-2 border-t border-white/10">
+                  <div className="flex items-center gap-2 text-xs text-white/80">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Projects annual dollar / dirham savings across your press fleet</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-white/80">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Includes printable executive report for management approval</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-white/10">
+                <Link
+                  href="/tools/roi-calculator"
+                  className="btn-primary w-full text-center text-sm py-3.5 bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-950/40 justify-center"
+                >
+                  Launch Waste & ROI Calculator
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

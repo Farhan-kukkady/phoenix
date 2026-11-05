@@ -23,9 +23,10 @@ export const siteConfig = {
       { label: "Print & Packaging", href: "/print-packaging" },
     ],
     right: [
+      { label: "Tools", href: "/tools" },
       { label: "Industrial", href: "/industrial" },
-      { label: "Contact", href: "/contact" },
       { label: "Services", href: "/services" },
+      { label: "Contact", href: "/contact" },
     ],
   },
 } as const;

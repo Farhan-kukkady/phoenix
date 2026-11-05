@@ -154,6 +154,29 @@ export default async function PrintPackagingPage() {
               />
             ))}
           </div>
+
+          {/* Interactive Tools Callout Banner */}
+          <div className="mt-16 p-8 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+            <div className="space-y-1 text-center md:text-left">
+              <span className="text-xs font-bold uppercase tracking-widest text-rose-400">
+                Interactive Engineering Tools
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black">
+                Calculate Your Plant’s Annual Waste Savings & Payback
+              </h3>
+              <p className="text-xs sm:text-sm text-white/70 max-w-xl">
+                Try our Makeready ROI Calculator or run the Substrate Diagnostic to find the exact spectrophotometer for your pressroom.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link href="/tools/roi-calculator" className="btn-primary text-xs px-5 py-3 bg-emerald-600 hover:bg-emerald-700">
+                Calculate Press ROI
+              </Link>
+              <Link href="/tools/selector" className="btn-outline text-xs px-5 py-3 border-white/30 text-white hover:bg-white/10">
+                Substrate Selector
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -179,6 +179,57 @@ For urgent technical assistance outside standard hours, our engineering desk can
     };
   }
 
+  // Case 0c: Instrument Selector & "Which machine do I need?"
+  if (
+    q.includes("selector") ||
+    q.includes("which machine") ||
+    q.includes("which instrument") ||
+    q.includes("choose") ||
+    q.includes("recommend a machine") ||
+    q.includes("recommend an instrument") ||
+    q.includes("substrate")
+  ) {
+    const products = findMatches("exact-2-plus", "ci7800", "ma-5-qc");
+    return {
+      reply: `To find the exact spectrophotometer or QC system engineered for your specific substrate and environment, you can use our interactive **[AI Instrument & Substrate Selector](/tools/selector)**!
+
+### Quick Optical Geometry Guide:
+- **Paper & Folding Carton**: Handheld 45°:0° annular optics (**X-Rite eXact™ 2**) match human eye perception under D50 lighting.
+- **Flexible Packaging & Metallic Foil**: Handheld with M3 switchable polarization (**X-Rite eXact™ 2 Plus**) eliminates surface glare.
+- **Plastics, Liquids & Raw Pigments**: Diffuse / 8° integrating sphere benchtop (**X-Rite Ci7800**) measures true color regardless of texture.
+- **Metallic & Pearlescent Coatings**: 5-Angle directional spectrophotometer (**X-Rite MA-5 QC**) measures color travel & flop.
+
+You can launch our 3-step diagnostic directly here: **[Launch AI Instrument Selector →](/tools/selector)**`,
+      recommendedProducts: products,
+    };
+  }
+
+  // Case 0d: Makeready & Waste ROI Calculator / Savings
+  if (
+    q.includes("roi") ||
+    q.includes("calculator") ||
+    q.includes("saving") ||
+    q.includes("savings") ||
+    q.includes("waste") ||
+    q.includes("makeready") ||
+    q.includes("payback") ||
+    q.includes("how much money")
+  ) {
+    const products = findMatches("exact", "gmg");
+    return {
+      reply: `You can model your plant's exact financial returns using our interactive **[Makeready & Waste ROI Calculator](/tools/roi-calculator)**!
+
+### Typical Industrial Benchmarks:
+- **Makeready Time Reduction**: 35% – 42% faster job changeovers (saving ~16 mins per press run).
+- **Substrate Scrap Saved**: 150,000+ sheets or 120,000 meters of film diverted from waste annually per press.
+- **Payback Horizon**: 2 to 4 months based on typical commercial packaging volumes in the UAE and GCC.
+- **Currencies**: Real-time calculations in both **USD ($)** and **AED (Dirhams)**.
+
+Test your plant parameters now: **[Open Makeready ROI Calculator →](/tools/roi-calculator)**`,
+      recommendedProducts: products,
+    };
+  }
+
   // Case 1: Color accuracy / portable spectrophotometer
   if (
     q.includes("accuracy") ||
