@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const HTML_FILE = `file://${path.join(process.cwd(), "public", "print_deck.html").replace(/\\/g, "/")}`;
-const PDF_OUTPUT = path.join(process.cwd(), "Phoenix_AI_Pitch_Deck.pdf");
+const PDF_OUTPUT = path.join(process.cwd(), "Phoenix_AI_Pitch_Deck_v2.pdf");
 const USER_DATA_DIR = path.join(process.cwd(), ".temp_pdf_profile");
 
 async function generatePdf() {
