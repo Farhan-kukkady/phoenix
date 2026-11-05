@@ -30,13 +30,14 @@ export function StatsStrip() {
                 className="space-y-2 p-4 rounded-2xl transition-all duration-300 hover:bg-white/[0.04] group"
               >
                 {/* Jackpot Slot Machine Number Roller */}
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-400 to-amber-300 drop-shadow-sm flex items-center justify-center">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-rose-400 drop-shadow-[0_2px_14px_rgba(244,63,94,0.45)] flex items-center justify-center">
                   <SlotCounter
                     value={val}
                     suffix={suffix}
                     prefix={prefix}
-                    duration={1.8}
-                    delay={idx * 0.15}
+                    duration={1.6}
+                    delay={idx * 0.12}
+                    className="text-rose-400"
                   />
                 </div>
 
