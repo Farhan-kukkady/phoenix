@@ -1,33 +1,43 @@
 const pptxgen = require("pptxgenjs");
 const path = require("path");
+const fs = require("fs");
 
 async function generateDeck() {
   const pres = new pptxgen();
 
-  pres.layout = "LAYOUT_16x9";
+  // Widescreen 16:9 (13.33" x 7.5") — standard modern presentation dimensions
+  pres.defineLayout({ name: "WIDESCREEN_16_9", width: 13.33, height: 7.5 });
+  pres.layout = "WIDESCREEN_16_9";
   pres.author = "Phoenix Colour Technologies";
   pres.company = "Phoenix Colour Technologies";
-  pres.title = "Transforming Phoenix with AI: Pitch Deck";
+  pres.title = "Transforming Phoenix Colour Technologies with AI";
 
-  // Brand Colors
+  // Brand Palette
   const NAVY = "0F1742";
+  const NAVY_CARD = "18235A";
   const CRIMSON = "C41E3A";
   const LIGHT_BG = "F8FAFC";
   const WHITE = "FFFFFF";
-  const SLATE_DARK = "1E293B";
-  const SLATE_MUTED = "64748B";
+  const SLATE_DARK = "0F172A";
+  const SLATE_MUTED = "475569";
   const EMERALD = "059669";
-  const CARD_BG = "FFFFFF";
+  const BORDER_COLOR = "E2E8F0";
 
-  // Helper to add header to content slides
+  const SCREENSHOTS_DIR = path.join(process.cwd(), "public", "screenshots");
+  const imgChatbot = path.join(SCREENSHOTS_DIR, "01_chatbot.png");
+  const imgSelector = path.join(SCREENSHOTS_DIR, "02_selector.png");
+  const imgSelectorResult = path.join(SCREENSHOTS_DIR, "03_selector_result.png");
+  const imgRoi = path.join(SCREENSHOTS_DIR, "04_roi_calculator.png");
+  const imgToolsHub = path.join(SCREENSHOTS_DIR, "05_tools_hub.png");
+
+  // Helper: Slide Header
   function addSlideHeader(slide, category, title) {
     slide.background = { color: LIGHT_BG };
-    
-    // Top category badge
+
     slide.addText(category.toUpperCase(), {
       x: 0.8,
-      y: 0.5,
-      w: 8.0,
+      y: 0.45,
+      w: 11.5,
       h: 0.3,
       fontSize: 10,
       bold: true,
@@ -35,12 +45,11 @@ async function generateDeck() {
       letterSpacing: 2,
     });
 
-    // Main slide title
     slide.addText(title, {
       x: 0.8,
       y: 0.8,
-      w: 11.5,
-      h: 0.6,
+      w: 11.7,
+      h: 0.65,
       fontSize: 22,
       bold: true,
       color: NAVY,
@@ -48,16 +57,16 @@ async function generateDeck() {
   }
 
   // ==========================================
-  // SLIDE 1: TITLE SLIDE (Dark Navy)
+  // SLIDE 1: TITLE SLIDE
   // ==========================================
   {
     const slide = pres.addSlide();
     slide.background = { color: NAVY };
 
-    // Tagline Pill
+    // Pill badge
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
       x: 1.0,
-      y: 1.6,
+      y: 1.8,
       w: 4.8,
       h: 0.45,
       fill: { color: "1E2958" },
@@ -66,7 +75,7 @@ async function generateDeck() {
     });
     slide.addText("INDUSTRIAL AI & COMMERCE TRANSFORMATION", {
       x: 1.0,
-      y: 1.6,
+      y: 1.8,
       w: 4.8,
       h: 0.45,
       fontSize: 10,
@@ -77,411 +86,309 @@ async function generateDeck() {
       letterSpacing: 1.5,
     });
 
-    // Main Title
     slide.addText("Transforming Phoenix Colour Technologies with AI", {
       x: 1.0,
-      y: 2.3,
-      w: 10.5,
-      h: 1.6,
-      fontSize: 34,
+      y: 2.5,
+      w: 11.3,
+      h: 1.8,
+      fontSize: 38,
       bold: true,
       color: WHITE,
-      lineSpacing: 42,
+      lineSpacing: 46,
     });
 
-    // Subtitle
     slide.addText(
-      "How intelligent diagnostic tools and financial modelers turn a 200+ product catalog into a 24/7 lead generation engine for the UAE, Saudi Arabia, GCC & Africa.",
+      "How intelligent diagnostic tools, 24/7 AI consultation, and financial ROI modelers turn a 200+ product catalog into a high-converting lead generation engine for the UAE, Saudi Arabia, GCC & Africa.",
       {
         x: 1.0,
-        y: 4.1,
-        w: 9.5,
+        y: 4.4,
+        w: 11.0,
         h: 0.9,
-        fontSize: 14,
-        color: "94A3B8",
-        lineSpacing: 22,
+        fontSize: 15,
+        color: "CBD5E1",
+        lineSpacing: 24,
       }
     );
 
-    // Footer divider & info
     slide.addShape(pres.shapes.LINE, {
       x: 1.0,
-      y: 5.6,
-      w: 11.3,
+      y: 5.9,
+      w: 11.33,
       h: 0,
       line: { color: "334185", width: 1 },
     });
+
     slide.addText("Presented by: Technical Solutions & AI Architecture Team", {
       x: 1.0,
-      y: 5.8,
+      y: 6.1,
       w: 6.0,
       h: 0.4,
       fontSize: 11,
-      color: "64748B",
+      color: "94A3B8",
     });
     slide.addText("Confidential • Phoenix Colour Technologies 2026", {
-      x: 7.3,
-      y: 5.8,
-      w: 5.0,
+      x: 6.3,
+      y: 6.1,
+      w: 6.0,
       h: 0.4,
       fontSize: 11,
-      color: "64748B",
+      color: "94A3B8",
       align: "right",
     });
   }
 
   // ==========================================
-  // SLIDE 2: THE EXECUTIVE CHALLENGE
+  // SLIDE 2: THE EXECUTIVE PROBLEM
   // ==========================================
   {
     const slide = pres.addSlide();
-    addSlideHeader(slide, "Market Opportunity", "The Challenge: Why Traditional B2B Catalogs Lose Deals");
+    addSlideHeader(slide, "Market Opportunity", "The Problem: Why Traditional B2B Industrial Catalogs Lose Deals");
 
     // Left Column Card: The Reality
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
       x: 0.8,
       y: 1.6,
-      w: 5.4,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "E2E8F0", width: 1 },
+      w: 5.6,
+      h: 5.2,
+      fill: { color: WHITE },
+      line: { color: BORDER_COLOR, width: 1 },
       rectRadius: 0.15,
     });
     slide.addText("The B2B Buyer's Dilemma Today", {
       x: 1.1,
       y: 1.9,
-      w: 4.8,
+      w: 5.0,
       h: 0.4,
-      fontSize: 16,
+      fontSize: 17,
       bold: true,
       color: NAVY,
     });
     slide.addText(
       [
         { text: "• 21 Global Brands & 200+ Products: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Too many options cause 'analysis paralysis'. Customers don't know where to start.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• High Technical Barrier: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Packaging managers don't know optical geometries (45°:0° vs d/8° sphere vs multi-angle).\n\n", options: { color: SLATE_MUTED } },
-        { text: "• High Capital Cost ($15k - $25k): ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Without immediate financial proof, buyers delay purchasing for months.\n\n", options: { color: SLATE_MUTED } },
+        { text: "Too many options cause 'catalog paralysis'. Packaging managers don't know where to click.\n\n", options: { color: SLATE_MUTED } },
+        { text: "• High Technical Jargon Barrier: ", options: { bold: true, color: SLATE_DARK } },
+        { text: "Buyers don't know which optical geometry (45°:0°, Sphere d/8°, Multi-Angle) fits their substrate.\n\n", options: { color: SLATE_MUTED } },
+        { text: "• $15,000 - $25,000+ Price Barrier: ", options: { bold: true, color: SLATE_DARK } },
+        { text: "Without immediate proof of waste savings and payback, factory CFOs delay purchasing.\n\n", options: { color: SLATE_MUTED } },
         { text: "• 98% Silent Drop-Off: ", options: { bold: true, color: CRIMSON } },
-        { text: "Factory managers leave without contacting sales because forms are too slow.", options: { color: SLATE_MUTED } },
+        { text: "Busy plant managers research at night and leave because generic contact forms are too slow.", options: { color: SLATE_MUTED } },
       ],
-      { x: 1.1, y: 2.4, w: 4.8, h: 3.7, fontSize: 12, lineSpacing: 20 }
+      { x: 1.1, y: 2.5, w: 5.0, h: 4.1, fontSize: 12, lineSpacing: 21 }
     );
 
     // Right Column Card: The AI Opportunity
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-      x: 6.6,
+      x: 6.8,
       y: 1.6,
-      w: 5.8,
-      h: 4.8,
+      w: 5.7,
+      h: 5.2,
       fill: { color: NAVY },
       rectRadius: 0.15,
     });
     slide.addText("The AI Transformation Solution", {
-      x: 6.9,
+      x: 7.1,
       y: 1.9,
-      w: 5.2,
+      w: 5.1,
       h: 0.4,
-      fontSize: 16,
+      fontSize: 17,
       bold: true,
       color: WHITE,
     });
     slide.addText(
       [
-        { text: "1. 24/7 AI Technical Advisor\n", options: { bold: true, color: "F43F5E" } },
-        { text: "Instant answers for buyers in UAE, Saudi Arabia, Kuwait & Africa—even at night.\n\n", options: { color: "CBD5E1" } },
+        { text: "1. 24/7 AI Technical Advisor (Phoenix AI)\n", options: { bold: true, color: "F43F5E" } },
+        { text: "Instant technical answers for buyers in UAE, Saudi Arabia, Kuwait & Africa—even after hours.\n\n", options: { color: "CBD5E1" } },
         { text: "2. 3-Step AI Substrate Selector\n", options: { bold: true, color: "38BDF8" } },
-        { text: "Diagnoses customer material (film, foil, paper, plastics) and gives exact certified match.\n\n", options: { color: "CBD5E1" } },
-        { text: "3. Makeready & Waste ROI Calculator\n", options: { bold: true, color: "34D399" } },
+        { text: "Diagnoses customer material (film, foil, paper, plastics) and gives exact certified machine match.\n\n", options: { color: "CBD5E1" } },
+        { text: "3. Makeready & Waste ROI Modeler\n", options: { bold: true, color: "34D399" } },
         { text: "Proves equipment pays for itself in ~3.2 months with 40% substrate waste reduction.\n\n", options: { color: "CBD5E1" } },
         { text: "4. One-Click WhatsApp Lead Handoff\n", options: { bold: true, color: WHITE } },
-        { text: "Leads land directly on the sales engineer's phone pre-filled with customer plant specs.", options: { color: "94A3B8" } },
+        { text: "Delivers pre-qualified buyers directly to sales engineers with their exact plant numbers attached.", options: { color: "94A3B8" } },
       ],
-      { x: 6.9, y: 2.4, w: 5.2, h: 3.7, fontSize: 12, lineSpacing: 20 }
+      { x: 7.1, y: 2.5, w: 5.1, h: 4.1, fontSize: 12, lineSpacing: 21 }
     );
   }
 
   // ==========================================
-  // SLIDE 3: PROBLEM 1 & 2 IN DEPTH
+  // SLIDE 3: PROBLEM 1 & 2 (Catalog Paralysis)
   // ==========================================
   {
     const slide = pres.addSlide();
-    addSlideHeader(slide, "Problem Statement 1 & 2", "The 2 Biggest Customer Roadblocks on the Website");
+    addSlideHeader(slide, "Problem Analysis", "The Catalog Dilemma: Too Many Products & Too Much Technical Jargon");
 
-    // Card 1: Catalog Paralysis
+    // Card 1
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
       x: 0.8,
       y: 1.6,
       w: 5.6,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "E2E8F0", width: 1 },
+      h: 5.2,
+      fill: { color: WHITE },
+      line: { color: BORDER_COLOR, width: 1 },
       rectRadius: 0.15,
-    });
-    slide.addShape(pres.shapes.RECTANGLE, {
-      x: 1.2,
-      y: 1.9,
-      w: 0.35,
-      h: 0.35,
-      fill: { color: CRIMSON },
     });
     slide.addText("Problem #1: Catalog Paralysis", {
-      x: 1.7,
-      y: 1.9,
-      w: 4.4,
-      h: 0.4,
-      fontSize: 16,
-      bold: true,
-      color: NAVY,
-    });
-    slide.addText(
-      "\"I don't know where to find what I need—there are too many products.\"",
-      {
-        x: 1.2,
-        y: 2.4,
-        w: 4.8,
-        h: 0.5,
-        fontSize: 12,
-        italic: true,
-        color: SLATE_MUTED,
-      }
-    );
-    slide.addText(
-      [
-        { text: "• Phoenix offers 21 brands: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "X-Rite, GMG, GlobalVision, Hybrid Software, Valiani, Hanatek, Miraclon...\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Over 200 specialized products: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Spectrophotometers, densitometers, RIP software, cutting tables, proofers.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Result: ", options: { bold: true, color: CRIMSON } },
-        { text: "A busy packaging manager spends 3 minutes clicking menus, gets frustrated, and leaves without asking for help.", options: { color: SLATE_MUTED } },
-      ],
-      { x: 1.2, y: 3.1, w: 4.8, h: 3.0, fontSize: 12, lineSpacing: 20 }
-    );
-
-    // Card 2: Technical Jargon Wall
-    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-      x: 6.8,
-      y: 1.6,
-      w: 5.6,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "E2E8F0", width: 1 },
-      rectRadius: 0.15,
-    });
-    slide.addShape(pres.shapes.RECTANGLE, {
-      x: 7.2,
-      y: 1.9,
-      w: 0.35,
-      h: 0.35,
-      fill: { color: CRIMSON },
-    });
-    slide.addText("Problem #2: The Technical Jargon Wall", {
-      x: 7.7,
-      y: 1.9,
-      w: 4.4,
-      h: 0.4,
-      fontSize: 16,
-      bold: true,
-      color: NAVY,
-    });
-    slide.addText(
-      "\"Which optical geometry do I need for my substrate?\"",
-      {
-        x: 7.2,
-        y: 2.4,
-        w: 4.8,
-        h: 0.5,
-        fontSize: 12,
-        italic: true,
-        color: SLATE_MUTED,
-      }
-    );
-    slide.addText(
-      [
-        { text: "• Optical Geometry Confusion: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Does flexible film need 45°:0° or Sphere d/8°? What about metallic foil?\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Cost of a Wrong Guess: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Buying a standard device for metallic film produces false readings because of surface glare.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Result: ", options: { bold: true, color: CRIMSON } },
-        { text: "Buyers freeze because they are terrified of making an expensive $20,000 ordering mistake.", options: { color: SLATE_MUTED } },
-      ],
-      { x: 7.2, y: 3.1, w: 4.8, h: 3.0, fontSize: 12, lineSpacing: 20 }
-    );
-  }
-
-  // ==========================================
-  // SLIDE 4: PROBLEM 3 & 4 IN DEPTH
-  // ==========================================
-  {
-    const slide = pres.addSlide();
-    addSlideHeader(slide, "Problem Statement 3 & 4", "The Financial Hesitation & The After-Hours Blindspot");
-
-    // Card 3: Financial Hesitation
-    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-      x: 0.8,
-      y: 1.6,
-      w: 5.6,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "E2E8F0", width: 1 },
-      rectRadius: 0.15,
-    });
-    slide.addText("Problem #3: The Price Justification Gap", {
       x: 1.1,
       y: 1.9,
       w: 5.0,
       h: 0.4,
       fontSize: 16,
       bold: true,
-      color: NAVY,
+      color: CRIMSON,
     });
     slide.addText(
+      "\"I don't know where to find what I need—there are too many products and categories.\"",
+      { x: 1.1, y: 2.4, w: 5.0, h: 0.6, fontSize: 12, italic: true, color: SLATE_MUTED }
+    );
+    slide.addText(
       [
-        { text: "• High Initial Investment: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "X-Rite eXact 2 and Ci7800 systems range from $12,000 to $25,000+.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• CFO Resistance: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Plant managers want it, but cannot prove to their finance department how it saves money.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• The Missing Link: ", options: { bold: true, color: CRIMSON } },
-        { text: "Unless the website shows how many scrap sheets and press hours are saved, the quote request never happens.", options: { color: SLATE_MUTED } },
+        { text: "• 21 Global Brands: ", options: { bold: true, color: SLATE_DARK } },
+        { text: "X-Rite, GMG, GlobalVision, Hybrid Software, Valiani, Hanatek, Miraclon...\n\n", options: { color: SLATE_MUTED } },
+        { text: "• 200+ Specialized Hardware & Software SKUs: ", options: { bold: true, color: SLATE_DARK } },
+        { text: "Spectrophotometers, densitometers, ink formulation software, proofers, cutting tables.\n\n", options: { color: SLATE_MUTED } },
+        { text: "• The Customer Frustration: ", options: { bold: true, color: CRIMSON } },
+        { text: "A customer who simply wants to inspect labels or calibrate flexo presses gets lost in multi-tiered menus and bounces.", options: { color: SLATE_MUTED } },
       ],
-      { x: 1.1, y: 2.5, w: 5.0, h: 3.6, fontSize: 12, lineSpacing: 21 }
+      { x: 1.1, y: 3.1, w: 5.0, h: 3.4, fontSize: 12, lineSpacing: 21 }
     );
 
-    // Card 4: After-Hours Blindspot
+    // Card 2
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
       x: 6.8,
       y: 1.6,
-      w: 5.6,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "E2E8F0", width: 1 },
+      w: 5.7,
+      h: 5.2,
+      fill: { color: WHITE },
+      line: { color: BORDER_COLOR, width: 1 },
       rectRadius: 0.15,
     });
-    slide.addText("Problem #4: The 24/7 Regional Buying Reality", {
+    slide.addText("Problem #2: The Technical Jargon Wall", {
       x: 7.1,
       y: 1.9,
-      w: 5.0,
+      w: 5.1,
       h: 0.4,
       fontSize: 16,
       bold: true,
-      color: NAVY,
+      color: CRIMSON,
     });
     slide.addText(
+      "\"Which optical geometry is mandatory for my substrate so I don't waste $20,000?\"",
+      { x: 7.1, y: 2.4, w: 5.1, h: 0.6, fontSize: 12, italic: true, color: SLATE_MUTED }
+    );
+    slide.addText(
       [
-        { text: "• Multi-Country Market: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Clients in Saudi Arabia, UAE, Qatar, Egypt, and Africa operate on different schedules and night shifts.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Slow Response Kills Inquiries: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "A customer researching at 9:00 PM will not wait until 9:00 AM the next day for basic answers.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• The Solution: ", options: { bold: true, color: EMERALD } },
-        { text: "An AI system that provides authoritative technical answers and captures buyer contact data around the clock.", options: { color: SLATE_MUTED } },
+        { text: "• Optical Physics Confusion: ", options: { bold: true, color: SLATE_DARK } },
+        { text: "Does flexible plastic film need a 45°:0° or a d/8° sphere? What about metallic foil?\n\n", options: { color: SLATE_MUTED } },
+        { text: "• The Cost of a Guess: ", options: { bold: true, color: SLATE_DARK } },
+        { text: "Buying a standard device for metallic film produces false readings due to surface glare.\n\n", options: { color: SLATE_MUTED } },
+        { text: "• The Customer Freeze: ", options: { bold: true, color: CRIMSON } },
+        { text: "Non-color scientists are afraid to commit to a formal quote because they fear making an expensive mistake.", options: { color: SLATE_MUTED } },
       ],
-      { x: 7.1, y: 2.5, w: 5.0, h: 3.6, fontSize: 12, lineSpacing: 21 }
+      { x: 7.1, y: 3.1, w: 5.1, h: 3.4, fontSize: 12, lineSpacing: 21 }
     );
   }
 
   // ==========================================
-  // SLIDE 5: THE STRATEGIC AI ARCHITECTURE
+  // SLIDE 4: THE 3-PILLAR AI SOLUTION OVERVIEW
   // ==========================================
   {
     const slide = pres.addSlide();
-    addSlideHeader(slide, "The Solution Architecture", "How the 3 AI Engines Solve Every Friction Point");
+    addSlideHeader(slide, "Solution Architecture", "The 3 Pillars of Phoenix AI: Instant Answers, Diagnostics & ROI");
 
-    const tools = [
+    const pillars = [
       {
-        num: "01",
+        num: "PILLAR 1",
         title: "Phoenix Color AI",
         sub: "24/7 Solution Consultant",
-        desc: "Understands X-Rite, GMG, GlobalVision, G7 & ISO standards. Answers complex technical questions instantly and guides buyers.",
-        badge: "Live on Every Page",
-        badgeColor: CRIMSON,
+        desc: "Interactive assistant on every page. Understands X-Rite, GMG, GlobalVision, and ISO/G7 standards. Provides consultative product guidance 24/7.",
+        badge: "Live Across Website",
+        color: CRIMSON,
       },
       {
-        num: "02",
+        num: "PILLAR 2",
         title: "AI Substrate Selector",
         sub: "Optical Diagnostic Engine",
-        desc: "3-step interactive wizard matching customer substrate (paper, foil, plastic, liquid) to the exact spectrophotometer geometry.",
+        desc: "3-step interactive wizard matching customer substrate (paper, foil, plastic, liquid) to the exact spectrophotometer with plain-English reasons.",
         badge: "Route: /tools/selector",
-        badgeColor: NAVY,
+        color: NAVY,
       },
       {
-        num: "03",
+        num: "PILLAR 3",
         title: "Makeready ROI Modeler",
         sub: "Financial Profit Engine",
-        desc: "Calculates annual scrap reduction, recovered press hours, and equipment payback in USD and AED with instant WhatsApp handoff.",
+        desc: "Calculates annual scrap reduction, recovered press hours, and equipment payback in USD and AED with instant WhatsApp lead generation.",
         badge: "Route: /tools/roi-calculator",
-        badgeColor: EMERALD,
+        color: EMERALD,
       },
     ];
 
-    tools.forEach((t, i) => {
-      const x = 0.8 + i * 3.9;
+    pillars.forEach((p, idx) => {
+      const px = 0.8 + idx * 3.95;
       slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-        x,
+        x: px,
         y: 1.6,
-        w: 3.6,
-        h: 4.8,
-        fill: { color: CARD_BG },
-        line: { color: "E2E8F0", width: 1 },
+        w: 3.7,
+        h: 5.2,
+        fill: { color: WHITE },
+        line: { color: BORDER_COLOR, width: 1 },
         rectRadius: 0.15,
       });
 
-      // Number badge
-      slide.addText(t.num, {
-        x: x + 0.3,
+      slide.addText(p.num, {
+        x: px + 0.3,
         y: 1.9,
-        w: 1.0,
-        h: 0.4,
-        fontSize: 20,
+        w: 3.1,
+        h: 0.3,
+        fontSize: 11,
         bold: true,
-        color: t.badgeColor,
+        color: p.color,
+        letterSpacing: 1.5,
       });
 
-      slide.addText(t.title, {
-        x: x + 0.3,
-        y: 2.4,
-        w: 3.0,
-        h: 0.4,
-        fontSize: 16,
+      slide.addText(p.title, {
+        x: px + 0.3,
+        y: 2.3,
+        w: 3.1,
+        h: 0.45,
+        fontSize: 17,
         bold: true,
         color: NAVY,
       });
 
-      slide.addText(t.sub, {
-        x: x + 0.3,
+      slide.addText(p.sub, {
+        x: px + 0.3,
         y: 2.8,
-        w: 3.0,
-        h: 0.3,
+        w: 3.1,
+        h: 0.35,
         fontSize: 11,
         bold: true,
         color: SLATE_MUTED,
       });
 
-      slide.addText(t.desc, {
-        x: x + 0.3,
+      slide.addText(p.desc, {
+        x: px + 0.3,
         y: 3.3,
-        w: 3.0,
-        h: 2.0,
+        w: 3.1,
+        h: 2.6,
         fontSize: 11,
         color: SLATE_DARK,
-        lineSpacing: 18,
+        lineSpacing: 19,
       });
 
-      // Pill at bottom
+      // Bottom pill
       slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-        x: x + 0.3,
-        y: 5.6,
-        w: 3.0,
-        h: 0.35,
+        x: px + 0.3,
+        y: 6.0,
+        w: 3.1,
+        h: 0.4,
         fill: { color: "F1F5F9" },
         rectRadius: 0.1,
       });
-      slide.addText(t.badge, {
-        x: x + 0.3,
-        y: 5.6,
-        w: 3.0,
-        h: 0.35,
+      slide.addText(p.badge, {
+        x: px + 0.3,
+        y: 6.0,
+        w: 3.1,
+        h: 0.4,
         fontSize: 10,
         bold: true,
         color: SLATE_DARK,
@@ -492,26 +399,26 @@ async function generateDeck() {
   }
 
   // ==========================================
-  // SLIDE 6: SOLUTION 1 — PHOENIX COLOR AI
+  // SLIDE 5: SOLUTION 1 — CHATBOT (WITH SCREENSHOT)
   // ==========================================
   {
     const slide = pres.addSlide();
     addSlideHeader(slide, "Solution Pillar 1", "Phoenix Color Intelligence AI: 24/7 Technical Consultant");
 
-    // Left Box: Capabilities
+    // Left Column: Capabilities
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
       x: 0.8,
       y: 1.6,
-      w: 6.2,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "E2E8F0", width: 1 },
+      w: 5.4,
+      h: 5.2,
+      fill: { color: WHITE },
+      line: { color: BORDER_COLOR, width: 1 },
       rectRadius: 0.15,
     });
-    slide.addText("Core Intelligence Features", {
+    slide.addText("Live Technical Consultation on Every Page", {
       x: 1.1,
       y: 1.9,
-      w: 5.6,
+      w: 4.8,
       h: 0.4,
       fontSize: 16,
       bold: true,
@@ -524,67 +431,47 @@ async function generateDeck() {
         { text: "• Real Technical Consultation: ", options: { bold: true, color: SLATE_DARK } },
         { text: "Understands ISO 12647, G7 Master standards, M0/M1/M2/M3 polarization, and Delta E tolerances.\n\n", options: { color: SLATE_MUTED } },
         { text: "• Verified UAE Business Information: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Accurately answers official working hours (Mon-Fri 8am-6pm, Sat 9am-2pm), Dubai Al Quoz headquarters, and Mumbai office.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Active Product Cards: ", options: { bold: true, color: EMERALD } },
-        { text: "Dynamically returns clickable product cards with photos and links directly inside chat.", options: { color: SLATE_MUTED } },
+        { text: "Accurately provides Dubai HQ address in Al Quoz, Mumbai office, and official UAE hours (Mon-Fri 8am-6pm).\n\n", options: { color: SLATE_MUTED } },
+        { text: "• Interactive Product Cards: ", options: { bold: true, color: EMERALD } },
+        { text: "Directly renders product renders and spec links right inside the conversation.", options: { color: SLATE_MUTED } },
       ],
-      { x: 1.1, y: 2.4, w: 5.6, h: 3.7, fontSize: 12, lineSpacing: 20 }
+      { x: 1.1, y: 2.5, w: 4.8, h: 4.1, fontSize: 11, lineSpacing: 19 }
     );
 
-    // Right Box: Sample Queries
-    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-      x: 7.4,
-      y: 1.6,
-      w: 5.0,
-      h: 4.8,
-      fill: { color: NAVY },
-      rectRadius: 0.15,
-    });
-    slide.addText("Sample Customer Interactions", {
-      x: 7.7,
-      y: 1.9,
-      w: 4.4,
-      h: 0.4,
-      fontSize: 15,
-      bold: true,
-      color: WHITE,
-    });
-    slide.addText(
-      [
-        { text: "Customer: ", options: { bold: true, color: "F43F5E" } },
-        { text: "\"We measure transparent BOPP film pouches. Will eXact 2 scratch the wet ink?\"\n", options: { color: WHITE } },
-        { text: "Phoenix AI: ", options: { bold: true, color: "38BDF8" } },
-        { text: "\"For flexible films, we recommend the eXact 2 Plus or eXact 2 Xp. They feature Mantis video targeting and non-contact apertures...\"\n\n", options: { color: "CBD5E1" } },
-        { text: "Customer: ", options: { bold: true, color: "F43F5E" } },
-        { text: "\"What is your working hours?\"\n", options: { color: WHITE } },
-        { text: "Phoenix AI: ", options: { bold: true, color: "38BDF8" } },
-        { text: "\"Our Dubai headquarters operates Mon-Fri 8:00 AM - 6:00 PM (GST) with Saturday emergency dispatch...\"", options: { color: "CBD5E1" } },
-      ],
-      { x: 7.7, y: 2.4, w: 4.4, h: 3.7, fontSize: 11, lineSpacing: 18 }
-    );
+    // Right Column: Live Screenshot
+    if (fs.existsSync(imgChatbot)) {
+      slide.addImage({
+        path: imgChatbot,
+        x: 6.5,
+        y: 1.6,
+        w: 6.0,
+        h: 5.2,
+        sizing: { type: "contain" },
+      });
+    }
   }
 
   // ==========================================
-  // SLIDE 7: SOLUTION 2 — AI SUBSTRATE SELECTOR
+  // SLIDE 6: SOLUTION 2 — SUBSTRATE SELECTOR (DIAGNOSTIC WIZARD SCREENSHOT)
   // ==========================================
   {
     const slide = pres.addSlide();
-    addSlideHeader(slide, "Solution Pillar 2", "AI Instrument & Substrate Selector: Eliminating Buying Mistakes");
+    addSlideHeader(slide, "Solution Pillar 2", "AI Instrument Selector: The 3-Step Substrate Diagnostic");
 
-    // Left 3 Steps Flow
+    // Left Column: The 3 Steps
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
       x: 0.8,
       y: 1.6,
-      w: 5.6,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "E2E8F0", width: 1 },
+      w: 5.4,
+      h: 5.2,
+      fill: { color: WHITE },
+      line: { color: BORDER_COLOR, width: 1 },
       rectRadius: 0.15,
     });
-    slide.addText("3-Step Diagnostic Wizard", {
+    slide.addText("Interactive Diagnostic Workflow", {
       x: 1.1,
       y: 1.9,
-      w: 5.0,
+      w: 4.8,
       h: 0.4,
       fontSize: 16,
       bold: true,
@@ -592,86 +479,60 @@ async function generateDeck() {
     });
 
     const steps = [
-      { step: "Step 1: Substrate Material", desc: "Paperboard, Flexible Film, Plastics/Masterbatch, Metallic Foil, or Artwork/Pharma Leaflets." },
-      { step: "Step 2: Operating Environment", desc: "Pressroom production floor (fast handheld), QC lab (benchtop formulation), or Prepress QA." },
-      { step: "Step 3: Quality Objective", desc: "Delta E00 pass/fail, Formulation with gloss isolation (SPIN/SPEX), or Flake flop analysis." },
+      {
+        num: "1",
+        title: "Substrate & Surface Type",
+        desc: "Paperboard, Flexible Film, Plastics/Masterbatch, Metallic Foil, or Printed Artwork/Pharma.",
+      },
+      {
+        num: "2",
+        title: "Measurement Environment",
+        desc: "Pressroom production floor (fast handheld), QC lab (benchtop formulation), or Prepress QA.",
+      },
+      {
+        num: "3",
+        title: "Quality Objective",
+        desc: "Delta E00 pass/fail, Formulation with gloss isolation (SPIN/SPEX), or Flake flop analysis.",
+      },
     ];
-    steps.forEach((s, idx) => {
+
+    steps.forEach((st, idx) => {
       const sy = 2.4 + idx * 1.25;
-      slide.addText(s.step, { x: 1.1, y: sy, w: 5.0, h: 0.3, fontSize: 13, bold: true, color: CRIMSON });
-      slide.addText(s.desc, { x: 1.1, y: sy + 0.3, w: 5.0, h: 0.7, fontSize: 11, color: SLATE_MUTED });
+      slide.addText(`Step ${st.num}: ${st.title}`, { x: 1.1, y: sy, w: 4.8, h: 0.3, fontSize: 12, bold: true, color: CRIMSON });
+      slide.addText(st.desc, { x: 1.1, y: sy + 0.3, w: 4.8, h: 0.7, fontSize: 11, color: SLATE_MUTED, lineSpacing: 16 });
     });
 
-    // Right Result Box
-    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-      x: 6.8,
-      y: 1.6,
-      w: 5.6,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "CBD5E1", width: 1 },
-      rectRadius: 0.15,
-    });
-    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-      x: 7.1,
-      y: 1.9,
-      w: 5.0,
-      h: 0.4,
-      fill: { color: "ECFDF5" },
-      rectRadius: 0.1,
-    });
-    slide.addText("✓ 99% Compatibility Match Generated", {
-      x: 7.1,
-      y: 1.9,
-      w: 5.0,
-      h: 0.4,
-      fontSize: 11,
-      bold: true,
-      color: EMERALD,
-      align: "center",
-      valign: "middle",
-    });
-
-    slide.addText("Certified Instrument Match", {
-      x: 7.1,
-      y: 2.5,
-      w: 5.0,
-      h: 0.4,
-      fontSize: 16,
-      bold: true,
-      color: NAVY,
-    });
-    slide.addText(
-      [
-        { text: "• eXact 2 Plus: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "For flexible film converters requiring switchable M3 polarization.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Ci7800 Benchtop: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "For plastics, liquid inks & formulation labs requiring d/8° diffuse sphere.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Plain-English Science: ", options: { bold: true, color: CRIMSON } },
-        { text: "Explains optical physics in simple terms so the plant manager feels confident ordering.", options: { color: SLATE_MUTED } },
-      ],
-      { x: 7.1, y: 3.0, w: 5.0, h: 3.1, fontSize: 12, lineSpacing: 20 }
-    );
+    // Right Column: Live Screenshot of Selector
+    if (fs.existsSync(imgSelector)) {
+      slide.addImage({
+        path: imgSelector,
+        x: 6.5,
+        y: 1.6,
+        w: 6.0,
+        h: 5.2,
+        sizing: { type: "contain" },
+      });
+    }
   }
 
   // ==========================================
-  // SLIDE 8: SOLUTION 3 — ROI CALCULATOR
+  // SLIDE 7: SOLUTION 2 — SUBSTRATE SELECTOR (RECOMMENDATION RESULT SCREENSHOT)
   // ==========================================
   {
     const slide = pres.addSlide();
-    addSlideHeader(slide, "Solution Pillar 3", "Makeready & Waste ROI Calculator: Proving the Payback");
+    addSlideHeader(slide, "Solution Pillar 2 (Cont.)", "AI Recommendation Engine: 99% Certified Optical Match");
 
-    // Left Controls
+    // Left Column: Result Value
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
       x: 0.8,
       y: 1.6,
       w: 5.4,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "E2E8F0", width: 1 },
+      h: 5.2,
+      fill: { color: WHITE },
+      line: { color: BORDER_COLOR, width: 1 },
       rectRadius: 0.15,
     });
-    slide.addText("Interactive Plant Controls", {
+    slide.addText("Instant Certified Clarity for Buyers", {
       x: 1.1,
       y: 1.9,
       w: 4.8,
@@ -682,69 +543,92 @@ async function generateDeck() {
     });
     slide.addText(
       [
-        { text: "• Press Technology: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Offset Sheetfed, Flexo Wide Web, Narrow Web Labels, Gravure Packaging.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Operating Fleet: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Sliders for 1 to 12 presses and 1 to 10 makereadies per day.\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Dual Currency Engine: ", options: { bold: true, color: SLATE_DARK } },
-        { text: "Real-time toggle between USD ($) and AED (Dirhams).\n\n", options: { color: SLATE_MUTED } },
-        { text: "• Certified Benchmarks: ", options: { bold: true, color: CRIMSON } },
-        { text: "Derived from ISO 12647-2 & G7 global press audit datasets.", options: { color: SLATE_MUTED } },
+        { text: "• Match Confidence Score: ", options: { bold: true, color: EMERALD } },
+        { text: "Renders exact compatibility percentage (e.g. 99% Match).\n\n", options: { color: SLATE_MUTED } },
+        { text: "• Plain-English Science: ", options: { bold: true, color: SLATE_DARK } },
+        { text: "Explains *why* that geometry is mandatory (e.g., 'Flexible foil produces glare; this machine's M3 polarization filter removes surface glare so colors match brand targets').\n\n", options: { color: SLATE_MUTED } },
+        { text: "• Optical Geometry Guidance: ", options: { bold: true, color: SLATE_DARK } },
+        { text: "Educates non-experts on 45°:0° vs d/8° sphere vs multi-angle.\n\n", options: { color: SLATE_MUTED } },
+        { text: "• 1-Click WhatsApp Quote: ", options: { bold: true, color: CRIMSON } },
+        { text: "Pre-fills the recommended machine model directly into WhatsApp inquiry.", options: { color: SLATE_MUTED } },
       ],
-      { x: 1.1, y: 2.4, w: 4.8, h: 3.7, fontSize: 12, lineSpacing: 20 }
+      { x: 1.1, y: 2.5, w: 4.8, h: 4.1, fontSize: 11, lineSpacing: 19 }
     );
 
-    // Right Big Metrics
-    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-      x: 6.6,
-      y: 1.6,
-      w: 5.8,
-      h: 4.8,
-      fill: { color: NAVY },
-      rectRadius: 0.15,
-    });
-    slide.addText("Average Plant Returns Modeled", {
-      x: 6.9,
-      y: 1.9,
-      w: 5.2,
-      h: 0.4,
-      fontSize: 16,
-      bold: true,
-      color: WHITE,
-    });
-
-    const metrics = [
-      { val: "AED 458,000 / yr", label: "Projected Annual Profit Recovery" },
-      { val: "~3.2 Months", label: "Estimated Equipment Payback Horizon" },
-      { val: "780+ Hours", label: "Recovered Press Capacity for Extra Jobs" },
-      { val: "187,000+ Sheets", label: "Substrate Scrap Diverted from Landfill" },
-    ];
-    metrics.forEach((m, idx) => {
-      const my = 2.4 + idx * 0.95;
-      slide.addText(m.val, { x: 6.9, y: my, w: 5.2, h: 0.4, fontSize: 18, bold: true, color: "34D399" });
-      slide.addText(m.label, { x: 6.9, y: my + 0.35, w: 5.2, h: 0.3, fontSize: 11, color: "CBD5E1" });
-    });
+    // Right Column: Live Screenshot of Result Card
+    if (fs.existsSync(imgSelectorResult)) {
+      slide.addImage({
+        path: imgSelectorResult,
+        x: 6.5,
+        y: 1.6,
+        w: 6.0,
+        h: 5.2,
+        sizing: { type: "contain" },
+      });
+    }
   }
 
   // ==========================================
-  // SLIDE 9: LEAD CAPTURE & INTEGRATION
+  // SLIDE 8: SOLUTION 3 — ROI CALCULATOR (SCREENSHOT & METRICS)
   // ==========================================
   {
     const slide = pres.addSlide();
-    addSlideHeader(slide, "Lead Generation Loop", "How Every Customer Calculation Reaches the Sales Desk");
+    addSlideHeader(slide, "Solution Pillar 3", "Makeready & Waste ROI Calculator: Proving Payback to CFOs");
 
-    // Sequence Diagram Box
+    // Left Column: Controls & Metrics
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
       x: 0.8,
       y: 1.6,
-      w: 11.6,
-      h: 4.8,
-      fill: { color: CARD_BG },
-      line: { color: "E2E8F0", width: 1 },
+      w: 5.4,
+      h: 5.2,
+      fill: { color: WHITE },
+      line: { color: BORDER_COLOR, width: 1 },
       rectRadius: 0.15,
     });
+    slide.addText("Live Industrial Financial Modeler", {
+      x: 1.1,
+      y: 1.9,
+      w: 4.8,
+      h: 0.4,
+      fontSize: 16,
+      bold: true,
+      color: NAVY,
+    });
+    slide.addText(
+      [
+        { text: "• Dual Currency (USD / AED): ", options: { bold: true, color: SLATE_DARK } },
+        { text: "Clients model returns in Dirhams (AED) or US Dollars with one click.\n\n", options: { color: SLATE_MUTED } },
+        { text: "• Pressroom Controls: ", options: { bold: true, color: SLATE_DARK } },
+        { text: "Sliders for 1 to 12 presses, job makereadies per day, and substrate scrap costs.\n\n", options: { color: SLATE_MUTED } },
+        { text: "• Real Savings Modeled: ", options: { bold: true, color: EMERALD } },
+        { text: "Shows AED 458,000 annual profit recovery and ~3.2-month equipment payback.\n\n", options: { color: SLATE_MUTED } },
+        { text: "• Printable Report: ", options: { bold: true, color: CRIMSON } },
+        { text: "Allows plant managers to print an executive summary for CFO approval.", options: { color: SLATE_MUTED } },
+      ],
+      { x: 1.1, y: 2.5, w: 4.8, h: 4.1, fontSize: 11, lineSpacing: 19 }
+    );
 
-    const flowSteps = [
+    // Right Column: Live Screenshot of ROI Calculator
+    if (fs.existsSync(imgRoi)) {
+      slide.addImage({
+        path: imgRoi,
+        x: 6.5,
+        y: 1.6,
+        w: 6.0,
+        h: 5.2,
+        sizing: { type: "contain" },
+      });
+    }
+  }
+
+  // ==========================================
+  // SLIDE 9: THE LEAD CAPTURE LOOP
+  // ==========================================
+  {
+    const slide = pres.addSlide();
+    addSlideHeader(slide, "The Sales Handoff Engine", "How Every Customer Calculation Reaches the Sales Desk");
+
+    const flow = [
       {
         num: "1",
         title: "Customer Calculates",
@@ -753,7 +637,7 @@ async function generateDeck() {
       {
         num: "2",
         title: "AI Computes Payback",
-        desc: "Reveals AED 450,000 savings and a 3.2-month payback period.",
+        desc: "Reveals AED 458,000 savings and a 3.2-month payback period.",
       },
       {
         num: "3",
@@ -767,28 +651,28 @@ async function generateDeck() {
       },
     ];
 
-    flowSteps.forEach((fs, i) => {
-      const fx = 1.1 + i * 2.85;
+    flow.forEach((fsItem, i) => {
+      const fx = 0.8 + i * 2.95;
       slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
         x: fx,
-        y: 2.1,
-        w: 2.6,
-        h: 3.8,
-        fill: { color: "F8FAFC" },
-        line: { color: "CBD5E1", width: 1 },
+        y: 1.6,
+        w: 2.7,
+        h: 4.0,
+        fill: { color: WHITE },
+        line: { color: BORDER_COLOR, width: 1 },
         rectRadius: 0.15,
       });
 
       slide.addShape(pres.shapes.OVAL, {
-        x: fx + 1.0,
-        y: 2.4,
+        x: fx + 1.05,
+        y: 1.9,
         w: 0.6,
         h: 0.6,
         fill: { color: NAVY },
       });
-      slide.addText(fs.num, {
-        x: fx + 1.0,
-        y: 2.4,
+      slide.addText(fsItem.num, {
+        x: fx + 1.05,
+        y: 1.9,
         w: 0.6,
         h: 0.6,
         fontSize: 14,
@@ -798,10 +682,10 @@ async function generateDeck() {
         valign: "middle",
       });
 
-      slide.addText(fs.title, {
+      slide.addText(fsItem.title, {
         x: fx + 0.2,
-        y: 3.2,
-        w: 2.2,
+        y: 2.7,
+        w: 2.3,
         h: 0.4,
         fontSize: 13,
         bold: true,
@@ -809,27 +693,49 @@ async function generateDeck() {
         align: "center",
       });
 
-      slide.addText(fs.desc, {
+      slide.addText(fsItem.desc, {
         x: fx + 0.2,
-        y: 3.7,
-        w: 2.2,
-        h: 1.8,
+        y: 3.2,
+        w: 2.3,
+        h: 2.0,
         fontSize: 11,
         color: SLATE_MUTED,
         align: "center",
         lineSpacing: 18,
       });
     });
+
+    // Bottom banner
+    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
+      x: 0.8,
+      y: 5.9,
+      w: 11.6,
+      h: 0.9,
+      fill: { color: NAVY },
+      rectRadius: 0.1,
+    });
+    slide.addText(
+      "Why Sales Teams Love This: Zero cold calls. Inbound leads arrive pre-educated on the exact machine model and pre-sold on the financial payback timeline.",
+      {
+        x: 1.1,
+        y: 5.9,
+        w: 11.0,
+        h: 0.9,
+        fontSize: 12,
+        bold: true,
+        color: WHITE,
+        valign: "middle",
+      }
+    );
   }
 
   // ==========================================
-  // SLIDE 10: BUSINESS IMPACT & CONCLUSION
+  // SLIDE 10: BUSINESS ROI FOR PHOENIX
   // ==========================================
   {
     const slide = pres.addSlide();
-    addSlideHeader(slide, "Conclusion & Impact", "The Bottom-Line ROI for Phoenix Colour Technologies");
+    addSlideHeader(slide, "Conclusion & Impact", "Measurable Business ROI & Strategic Market Leadership");
 
-    // 4 Key Stat Callouts
     const stats = [
       { val: "+35%", label: "Conversion Lift", desc: "Turns passive datasheet readers into active inbound inquiries." },
       { val: "40-50%", label: "Shorter Sales Cycles", desc: "Buyers arrive already knowing their matching model and payback." },
@@ -843,9 +749,9 @@ async function generateDeck() {
         x: sx,
         y: 1.6,
         w: 2.7,
-        h: 2.8,
-        fill: { color: CARD_BG },
-        line: { color: "E2E8F0", width: 1 },
+        h: 3.0,
+        fill: { color: WHITE },
+        line: { color: BORDER_COLOR, width: 1 },
         rectRadius: 0.15,
       });
 
@@ -854,48 +760,48 @@ async function generateDeck() {
         y: 1.9,
         w: 2.3,
         h: 0.6,
-        fontSize: 26,
+        fontSize: 28,
         bold: true,
         color: CRIMSON,
         align: "center",
       });
       slide.addText(st.label, {
         x: sx + 0.2,
-        y: 2.5,
+        y: 2.6,
         w: 2.3,
         h: 0.35,
-        fontSize: 12,
+        fontSize: 13,
         bold: true,
         color: NAVY,
         align: "center",
       });
       slide.addText(st.desc, {
         x: sx + 0.2,
-        y: 2.9,
+        y: 3.1,
         w: 2.3,
         h: 1.3,
-        fontSize: 10,
+        fontSize: 11,
         color: SLATE_MUTED,
         align: "center",
-        lineSpacing: 16,
+        lineSpacing: 17,
       });
     });
 
     // Bottom Action Banner
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
       x: 0.8,
-      y: 4.7,
+      y: 4.9,
       w: 11.6,
-      h: 1.7,
+      h: 1.8,
       fill: { color: NAVY },
       rectRadius: 0.15,
     });
     slide.addText("Live Tools Ready for Client Demo Today", {
       x: 1.2,
-      y: 4.9,
+      y: 5.1,
       w: 10.8,
       h: 0.4,
-      fontSize: 16,
+      fontSize: 17,
       bold: true,
       color: WHITE,
     });
@@ -903,20 +809,28 @@ async function generateDeck() {
       "1. Central Tools Hub: /tools  •  2. AI Instrument Selector: /tools/selector  •  3. Makeready ROI Calculator: /tools/roi-calculator\nAll tools are live, mobile-responsive, synchronized with official Dubai hours, and ready for sales enablement.",
       {
         x: 1.2,
-        y: 5.4,
+        y: 5.6,
         w: 10.8,
-        h: 0.8,
-        fontSize: 11,
+        h: 0.9,
+        fontSize: 12,
         color: "CBD5E1",
-        lineSpacing: 18,
+        lineSpacing: 20,
       }
     );
   }
 
-  // Save the presentation
-  const outputPath = path.join(process.cwd(), "Phoenix_AI_Pitch_Deck.pptx");
+  // Save the presentation with a fresh version name so it doesn't conflict with any open file
+  const outputPath = path.join(process.cwd(), "Phoenix_AI_Pitch_Deck_v2.pptx");
   await pres.writeFile({ fileName: outputPath });
   console.log(`Presentation generated successfully at: ${outputPath}`);
+
+  // Also try updating the main name if not locked
+  try {
+    const mainPath = path.join(process.cwd(), "Phoenix_AI_Pitch_Deck.pptx");
+    fs.copyFileSync(outputPath, mainPath);
+  } catch (e) {
+    console.log("Main file is currently open in PowerPoint; updated v2 file created.");
+  }
 }
 
 generateDeck().catch((err) => {
