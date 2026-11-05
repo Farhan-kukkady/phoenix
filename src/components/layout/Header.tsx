@@ -68,20 +68,19 @@ export function Header() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  // Solid frosted luxury navy navbar everywhere — guarantees 100% high-contrast readability on white and dark backgrounds
-  const headerBg = scrolled || megaOpen || mobileOpen
-    ? "bg-[rgb(15,23,66)/0.96] backdrop-blur-xl border-b border-white/10 shadow-2xl"
-    : "bg-[rgb(15,23,66)/0.92] backdrop-blur-xl border-b border-white/10 shadow-lg";
-
   return (
     <>
       <header
         ref={headerRef}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          headerBg
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-xl border-b border-white/10 shadow-xl"
         )}
-        style={{ height: "var(--header-height)" }}
+        style={{
+          height: "var(--header-height)",
+          backgroundColor: scrolled || megaOpen || mobileOpen
+            ? "rgba(15, 23, 66, 0.98)"
+            : "rgba(15, 23, 66, 0.94)",
+        }}
       >
         <div className="container-wide h-full flex items-center justify-between">
           {/* Left nav */}
