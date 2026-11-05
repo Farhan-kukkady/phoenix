@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phoenix AI Pitch Deck | Phoenix Colour Technologies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .slide { display: none; }
+    .slide.active { display: flex; }
+    @media print {
+      body { background: white !important; }
+      .slide { display: flex !important; page-break-after: always; min-height: 100vh; }
+      .nav-controls { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden select-none">
+
+  <!-- Top bar -->
+  <header class="px-8 py-4 border-b border-white/10 flex items-center justify-between bg-[rgb(15,23,66)]/90 backdrop-blur-md">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-[rgb(196,30,58)] flex items-center justify-center font-black text-white text-sm">P</div>
+      <span class="font-bold text-sm tracking-wide text-white">Phoenix Colour Technologies</span>
+      <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-rose-300 font-semibold border border-white/10">AI Executive Pitch Deck</span>
+    </div>
+    <div class="flex items-center gap-4 text-xs text-white/60">
+      <span id="slideCounter" class="font-bold text-white text-sm">Slide 1 / 10</span>
+      <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">Print / PDF</button>
+    </div>
+  </header>
+
+  <!-- Slide Canvas Container -->
+  <main class="flex-1 flex items-center justify-center p-4 sm:p-8">
+    <div class="w-full max-w-6xl aspect-[16/9] min-h-[580px] rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-slate-900 relative flex flex-col justify-between p-8 sm:p-12 transition-all">
+
+      <!-- SLIDE 1: TITLE SLIDE -->
+      <div class="slide active flex-col justify-between h-full bg-[rgb(15,23,66)] -m-8 sm:-m-12 p-8 sm:p-12 relative overflow-hidden">
+        <div class="absolute -right-24 -top-24 w-96 h-96 bg-[radial-gradient(circle,rgba(196,30,58,0.3)_0%,transparent_70%)] pointer-events-none"></div>
+        <div class="space-y-4 relative z-10">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-bold text-rose-300 tracking-wider">
+            ★ INDUSTRIAL AI & COMMERCE TRANSFORMATION
+          </div>
+          <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.1] max-w-4xl">
+            Transforming Phoenix Colour Technologies with AI
+          </h1>
+          <p class="text-lg sm:text-xl text-slate-300 max-w-3xl leading-relaxed font-normal pt-2">
+            How intelligent diagnostic tools and financial modelers turn a 200+ product catalog into a 24/7 lead generation engine for the UAE, Saudi Arabia, GCC & Africa.
+          </p>
+        </div>
+        <div class="pt-8 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 relative z-10">
+          <span>Presented by: Technical Solutions & AI Architecture Team</span>
+          <span>Confidential • Phoenix Colour Technologies 2026</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: THE CORE PROBLEM -->
+      <div class="slide flex-col justify-between h-full">
+        <div>
+          <span class="text-xs font-bold text-rose-400 tracking-widest uppercase">The Market Opportunity</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1">Why Traditional B2B Catalogs Lose Deals</h2>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">98% of print managers research equipment during busy shifts and leave without contacting sales.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3">
+            <h3 class="text-lg font-bold text-rose-400">The B2B Buyer's Dilemma</h3>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+              <li><strong class="text-white">• 21 Global Brands & 200+ Products:</strong> Too many options cause "analysis paralysis".</li>
+              <li><strong class="text-white">• High Technical Barrier:</strong> Buyers don't know optical geometries (45°:0° vs d/8° sphere).</li>
+              <li><strong class="text-white">• $15k - $25k Capital Cost:</strong> Without financial proof of waste savings, buyers hesitate.</li>
+              <li><strong class="text-rose-400">• Silent Drop-Off:</strong> Waiting 24 hours for a quote kills momentum.</li>
+            </ul>
+          </div>
+          <div class="bg-[rgb(15,23,66)] border border-rose-500/30 rounded-2xl p-6 space-y-3 shadow-xl">
+            <h3 class="text-lg font-bold text-emerald-400">The AI Transformation Solution</h3>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+              <li><strong class="text-white">• 24/7 AI Technical Advisor:</strong> Instant guidance across UAE, Saudi & Africa.</li>
+              <li><strong class="text-white">• 3-Step AI Substrate Selector:</strong> Matches material (foil, film, plastic) to certified geometry.</li>
+              <li><strong class="text-white">• Makeready ROI Calculator:</strong> Proves the machine pays for itself in ~3.2 months.</li>
+              <li><strong class="text-emerald-400">• 1-Click WhatsApp Handoff:</strong> Delivers pre-qualified buyers to sales engineers.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-[11px] text-slate-500 border-t border-white/10 pt-3">
+          Key Takeaway: Moving from a static digital brochure to an intelligent, consultative advisor.
+        </div>
+      </div>
+
+      <!-- SLIDE 3: PROBLEM 1 & 2 IN DEPTH -->
+      <div class="slide flex-col justify-between h-full">
+        <div>
+          <span class="text-xs font-bold text-rose-400 tracking-widest uppercase">Problem Statements 1 & 2</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1">Catalog Paralysis & The Technical Jargon Wall</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3">
+            <div class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold">1</div>
+            <h3 class="text-lg font-bold text-white">Problem #1: Catalog Paralysis</h3>
+            <p class="text-xs italic text-slate-400">"I don't know where to find what I need—there are too many products."</p>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              With 21 international brands (X-Rite, GMG, GlobalVision, Valiani, Hanatek) and over 200 specialized products, customers spend minutes clicking menus, get overwhelmed, and leave without asking for help.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3">
+            <div class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold">2</div>
+            <h3 class="text-lg font-bold text-white">Problem #2: The Technical Jargon Wall</h3>
+            <p class="text-xs italic text-slate-400">"Which optical geometry do I need for my substrate?"</p>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Packaging managers often don't know whether flexible plastic film requires a 45°:0° with M3 polarization or a d/8° sphere. Because a wrong guess costs $20,000, they freeze and delay their decision.
+            </p>
+          </div>
+        </div>
+        <div class="text-[11px] text-slate-500 border-t border-white/10 pt-3">
+          Result: Phoenix was losing high-intent buyers who couldn't navigate the catalog on their own.
+        </div>
+      </div>
+
+      <!-- SLIDE 4: PROBLEM 3 & 4 IN DEPTH -->
+      <div class="slide flex-col justify-between h-full">
+        <div>
+          <span class="text-xs font-bold text-rose-400 tracking-widest uppercase">Problem Statements 3 & 4</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1">Price Hesitation & The After-Hours Blindspot</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">3</div>
+            <h3 class="text-lg font-bold text-white">Problem #3: The Price Justification Gap</h3>
+            <p class="text-xs italic text-slate-400">"Why should our plant spend $18,000 on this machine?"</p>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Factory CFOs don't care about "nanometers" or "apertures"—they care about cashflow and waste. Without showing how many cardboard sheets and press hours are saved, quotes face immense executive resistance.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3">
+            <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">4</div>
+            <h3 class="text-lg font-bold text-white">Problem #4: The 24/7 Regional Reality</h3>
+            <p class="text-xs italic text-slate-400">"We need answers now during our night packaging shift."</p>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Buyers across Saudi Arabia, Kuwait, Egypt, and the GCC operate outside standard Dubai office hours. A customer searching at 9:00 PM will not wait until the next morning for basic answers.
+            </p>
+          </div>
+        </div>
+        <div class="text-[11px] text-slate-500 border-t border-white/10 pt-3">
+          Opportunity: AI provides instant numbers and technical reassurance 24 hours a day.
+        </div>
+      </div>
+
+      <!-- SLIDE 5: 3-PILLAR SOLUTION ARCHITECTURE -->
+      <div class="slide flex-col justify-between h-full">
+        <div>
+          <span class="text-xs font-bold text-rose-400 tracking-widest uppercase">The Solution Architecture</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1">The 3-Pillar Phoenix AI Engine</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 my-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+            <div>
+              <span class="text-2xl font-black text-rose-400">01</span>
+              <h3 class="text-lg font-bold text-white mt-1">Phoenix Color AI</h3>
+              <p class="text-xs text-rose-300 font-semibold">24/7 Virtual Technical Consultant</p>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Trained on 21 partner brands, X-Rite instruments, GMG color software, and G7/ISO standards. Answers complex technical questions instantly.
+              </p>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-white/10 text-[11px] font-semibold text-white/70 text-center">Live on Every Page</span>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+            <div>
+              <span class="text-2xl font-black text-blue-400">02</span>
+              <h3 class="text-lg font-bold text-white mt-1">AI Substrate Selector</h3>
+              <p class="text-xs text-blue-300 font-semibold">Optical Diagnostic Engine</p>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                3-step interactive wizard matching customer substrate (paper, foil, plastic, liquid) to the exact spectrophotometer geometry.
+              </p>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-white/10 text-[11px] font-semibold text-white/70 text-center">Route: /tools/selector</span>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+            <div>
+              <span class="text-2xl font-black text-emerald-400">03</span>
+              <h3 class="text-lg font-bold text-white mt-1">Makeready ROI Modeler</h3>
+              <p class="text-xs text-emerald-300 font-semibold">Financial Profit Engine</p>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Calculates annual scrap reduction, recovered press hours, and equipment payback in USD and AED with instant WhatsApp handoff.
+              </p>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-white/10 text-[11px] font-semibold text-white/70 text-center">Route: /tools/roi-calculator</span>
+          </div>
+        </div>
+        <div class="text-[11px] text-slate-500 border-t border-white/10 pt-3">
+          All 3 tools work together to guide, validate, and hand off pre-qualified buyers.
+        </div>
+      </div>
+
+      <!-- SLIDE 6: SOLUTION 1 — PHOENIX COLOR AI -->
+      <div class="slide flex-col justify-between h-full">
+        <div>
+          <span class="text-xs font-bold text-rose-400 tracking-widest uppercase">Solution Pillar 1</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1">Phoenix Color Intelligence AI</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3">
+            <h3 class="text-lg font-bold text-white">Engineering Knowledge at Scale</h3>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+              <li><strong class="text-white">• Deep Product Knowledge:</strong> Recommends eXact 2, Ci7800, MA-5 QC, and GlobalVision systems.</li>
+              <li><strong class="text-white">• Certified Standards:</strong> Explains ISO 12647-2, G7 Master, and Delta E tolerances.</li>
+              <li><strong class="text-white">• Verified UAE Business Info:</strong> Accurately provides Dubai HQ address and Mon-Fri 8am-6pm hours.</li>
+              <li><strong class="text-emerald-400">• Interactive Product Cards:</strong> Embeds live product photos and links directly in chat.</li>
+            </ul>
+          </div>
+          <div class="bg-[rgb(15,23,66)] border border-white/15 rounded-2xl p-6 space-y-3 text-xs leading-relaxed">
+            <div class="text-rose-400 font-bold">Sample Live Dialogue:</div>
+            <div class="bg-white/5 p-3 rounded-xl space-y-1">
+              <span class="text-slate-400 font-bold">Customer:</span>
+              <p class="text-slate-200">"We print flexible film pouches. Will eXact 2 scratch wet ink?"</p>
+            </div>
+            <div class="bg-rose-950/40 border border-rose-500/20 p-3 rounded-xl space-y-1">
+              <span class="text-rose-300 font-bold">Phoenix AI:</span>
+              <p class="text-slate-200">"For flexible films, we recommend the <strong>eXact™ 2 Plus</strong> or <strong>eXact 2 Xp</strong>. They feature Mantis™ digital loupe video targeting and non-contact apertures to prevent ink smearing on film."</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-[11px] text-slate-500 border-t border-white/10 pt-3">
+          Result: High-touch consultative credibility before a sales engineer even picks up the phone.
+        </div>
+      </div>
+
+      <!-- SLIDE 7: SOLUTION 2 — AI SUBSTRATE SELECTOR -->
+      <div class="slide flex-col justify-between h-full">
+        <div>
+          <span class="text-xs font-bold text-rose-400 tracking-widest uppercase">Solution Pillar 2</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1">AI Instrument & Substrate Selector</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3">
+            <h3 class="text-lg font-bold text-white">3-Step Diagnostic Flow</h3>
+            <div class="space-y-2 text-xs sm:text-sm">
+              <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                <strong class="text-rose-400">Step 1: Substrate Material:</strong> Paperboard, Flexible Film, Plastics/Masterbatch, Metallic Foil, or Artwork.
+              </div>
+              <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                <strong class="text-rose-400">Step 2: Operating Environment:</strong> Pressroom floor (handheld), QC lab (benchtop formulation), or Prepress.
+              </div>
+              <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                <strong class="text-rose-400">Step 3: Quality Objective:</strong> Delta E00 pass/fail, Formulation with gloss isolation (SPIN/SPEX), or Flake flop.
+              </div>
+            </div>
+          </div>
+          <div class="bg-[rgb(15,23,66)] border border-emerald-500/30 rounded-2xl p-6 space-y-3">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-xs">
+              ✓ 99% Compatibility Match Generated
+            </div>
+            <h3 class="text-lg font-bold text-white">Engineered Recommendations</h3>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+              <li><strong class="text-white">• eXact™ 2 Plus:</strong> Recommended for flexible foils requiring M3 polarization to remove glare.</li>
+              <li><strong class="text-white">• Ci7800 Benchtop:</strong> Recommended for plastics and liquid inks requiring diffuse d/8° sphere.</li>
+              <li><strong class="text-white">• Plain-English Science:</strong> Explains optical physics in simple terms so the plant manager feels confident ordering.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-[11px] text-slate-500 border-t border-white/10 pt-3">
+          Eliminates customer anxiety about buying the wrong instrument geometry.
+        </div>
+      </div>
+
+      <!-- SLIDE 8: SOLUTION 3 — ROI CALCULATOR -->
+      <div class="slide flex-col justify-between h-full">
+        <div>
+          <span class="text-xs font-bold text-rose-400 tracking-widest uppercase">Solution Pillar 3</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1">Makeready & Waste ROI Calculator</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3">
+            <h3 class="text-lg font-bold text-white">Interactive Plant Controls</h3>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+              <li><strong class="text-white">• Press Technology:</strong> Offset Sheetfed, Flexo Wide Web, Narrow Web Labels, Gravure.</li>
+              <li><strong class="text-white">• Operating Fleet:</strong> Sliders for 1 to 12 presses and 1 to 10 makereadies/day.</li>
+              <li><strong class="text-white">• Currency Engine:</strong> Real-time toggle between USD ($) and AED (Dirhams).</li>
+              <li><strong class="text-white">• Certified Benchmarks:</strong> Derived from ISO 12647-2 & G7 global press audit datasets.</li>
+            </ul>
+          </div>
+          <div class="bg-[rgb(15,23,66)] border border-emerald-500/30 rounded-2xl p-6 space-y-3 flex flex-col justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Typical Modeled Returns</span>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-white/5 p-3 rounded-xl">
+                <span class="text-xl sm:text-2xl font-black text-emerald-400 block">AED 458,000</span>
+                <span class="text-[11px] text-slate-300">Annual Profit Recovery</span>
+              </div>
+              <div class="bg-white/5 p-3 rounded-xl">
+                <span class="text-xl sm:text-2xl font-black text-emerald-400 block">~3.2 Mos</span>
+                <span class="text-[11px] text-slate-300">Equipment Payback</span>
+              </div>
+              <div class="bg-white/5 p-3 rounded-xl">
+                <span class="text-xl sm:text-2xl font-black text-white block">780+ Hrs</span>
+                <span class="text-[11px] text-slate-300">Capacity Recovered</span>
+              </div>
+              <div class="bg-white/5 p-3 rounded-xl">
+                <span class="text-xl sm:text-2xl font-black text-white block">187,000</span>
+                <span class="text-[11px] text-slate-300">Scrap Sheets Saved</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-400 italic">Proves to CFOs that the machine pays for itself in ~100 days.</p>
+          </div>
+        </div>
+        <div class="text-[11px] text-slate-500 border-t border-white/10 pt-3">
+          Converts an equipment expense into an undeniable high-return investment.
+        </div>
+      </div>
+
+      <!-- SLIDE 9: LEAD CAPTURE LOOP -->
+      <div class="slide flex-col justify-between h-full">
+        <div>
+          <span class="text-xs font-bold text-rose-400 tracking-widest uppercase">The Sales Handoff Engine</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1">How Data Directly Reaches the Sales Team</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 my-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center space-y-2">
+            <div class="w-10 h-10 rounded-full bg-[rgb(15,23,66)] border border-white/20 text-white font-bold flex items-center justify-center mx-auto">1</div>
+            <h4 class="font-bold text-white text-sm">Customer Calculates</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Inputs 3 Offset presses running 4 jobs/day on the website.</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center space-y-2">
+            <div class="w-10 h-10 rounded-full bg-[rgb(15,23,66)] border border-white/20 text-white font-bold flex items-center justify-center mx-auto">2</div>
+            <h4 class="font-bold text-white text-sm">AI Computes Payback</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Reveals AED 450,000 savings and a 3.2-month payback period.</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center space-y-2">
+            <div class="w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center mx-auto">3</div>
+            <h4 class="font-bold text-white text-sm">1-Click WhatsApp</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Customer taps "Validate ROI with an Engineer".</p>
+          </div>
+          <div class="bg-[rgb(15,23,66)] border border-rose-500/40 rounded-2xl p-5 text-center space-y-2 shadow-xl">
+            <div class="w-10 h-10 rounded-full bg-[rgb(196,30,58)] text-white font-bold flex items-center justify-center mx-auto">4</div>
+            <h4 class="font-bold text-rose-300 text-sm">Pre-Filled Lead</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">Sales receives message with the customer's exact plant specs!</p>
+          </div>
+        </div>
+        <div class="text-[11px] text-slate-500 border-t border-white/10 pt-3">
+          Zero cold calling required: Leads arrive pre-educated and pre-sold on the equipment.
+        </div>
+      </div>
+
+      <!-- SLIDE 10: CONCLUSION & BUSINESS IMPACT -->
+      <div class="slide flex-col justify-between h-full">
+        <div>
+          <span class="text-xs font-bold text-rose-400 tracking-widest uppercase">Executive Summary & Next Steps</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1">Bottom-Line Business Impact for Phoenix</h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center space-y-1">
+            <span class="text-3xl font-black text-rose-400 block">+35%</span>
+            <span class="text-xs font-bold text-white block">Conversion Lift</span>
+            <span class="text-[11px] text-slate-400 block">Turns passive readers into active inquiries.</span>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center space-y-1">
+            <span class="text-3xl font-black text-emerald-400 block">40-50%</span>
+            <span class="text-xs font-bold text-white block">Shorter Sales Cycles</span>
+            <span class="text-[11px] text-slate-400 block">Buyers arrive knowing model & ROI.</span>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center space-y-1">
+            <span class="text-3xl font-black text-blue-400 block">24 / 7</span>
+            <span class="text-xs font-bold text-white block">Regional Coverage</span>
+            <span class="text-[11px] text-slate-400 block">Captures buyers in Saudi, Kuwait, Egypt.</span>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center space-y-1">
+            <span class="text-3xl font-black text-amber-400 block">#1</span>
+            <span class="text-xs font-bold text-white block">Market Leadership</span>
+            <span class="text-[11px] text-slate-400 block">First in GCC with interactive AI tools.</span>
+          </div>
+        </div>
+        <div class="bg-white/5 border border-white/10 p-4 rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div>
+            <strong class="text-white block">Live Tools Ready for Client Demo Today:</strong>
+            <span class="text-slate-400">Hub: /tools  •  Selector: /tools/selector  •  ROI Modeler: /tools/roi-calculator</span>
+          </div>
+          <a href="/tools" target="_blank" class="px-4 py-2 rounded-xl bg-[rgb(196,30,58)] hover:bg-rose-700 font-bold text-white transition-colors">
+            Launch Live Tools Demo →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bottom Navigation bar -->
+  <footer class="px-8 py-4 border-t border-white/10 flex items-center justify-between bg-[rgb(15,23,66)]/90 backdrop-blur-md nav-controls">
+    <div class="text-xs text-white/50">
+      Use <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">→</kbd> arrow keys to navigate slides
+    </div>
+    <div class="flex items-center gap-3">
+      <button id="prevBtn" onclick="prevSlide()" class="px-4 py-2 rounded-xl border border-white/20 text-white font-semibold text-xs hover:bg-white/10 transition-colors disabled:opacity-30">
+        ← Previous
+      </button>
+      <button id="nextBtn" onclick="nextSlide()" class="px-5 py-2 rounded-xl bg-[rgb(196,30,58)] text-white font-bold text-xs hover:bg-rose-700 shadow-md transition-colors">
+        Next Slide →
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+      counter.innerText = `Slide ${index + 1} / ${totalSlides}`;
+      prevBtn.disabled = index === 0;
+      nextBtn.innerText = index === totalSlides - 1 ? 'Finish Presentation' : 'Next Slide →';
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    showSlide(currentSlide);
+  </script>
+</body>
+</html>
