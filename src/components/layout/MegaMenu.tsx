@@ -34,7 +34,8 @@ interface MegaMenuProps {
 export function MegaMenu({ onClose }: MegaMenuProps) {
   return (
     <div
-      className="absolute top-full left-0 right-0 bg-[rgb(15,23,66)/0.97] backdrop-blur-md border-t border-white/10 shadow-2xl"
+      className="absolute top-full left-0 right-0 backdrop-blur-2xl border-t border-b border-white/10 shadow-2xl z-50 transition-all duration-200"
+      style={{ backgroundColor: "rgba(15, 23, 66, 0.98)" }}
       role="navigation"
       aria-label="Products mega menu"
     >
