@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Search, ChevronDown } from "lucide-react";
+import { Menu, X, Search, ChevronDown, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { MegaMenu } from "./MegaMenu";
@@ -69,7 +69,7 @@ export function Header() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   const headerBg = scrolled || megaOpen || mobileOpen
-    ? "bg-[rgb(15,23,66)] shadow-lg backdrop-blur-sm"
+    ? "bg-[rgb(15,23,66)/0.88] backdrop-blur-xl border-b border-white/10 shadow-2xl"
     : "bg-transparent";
 
   return (
@@ -153,19 +153,30 @@ export function Header() {
               className="flex items-center gap-8"
               aria-label="Primary right navigation"
             >
-              {siteConfig.nav.right.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "nav-link text-white",
-                    isActive(item.href) && "opacity-100"
-                  )}
-                  data-active={isActive(item.href) ? "true" : "false"}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {siteConfig.nav.right.map((item) =>
+                item.href === "/tools" ? (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[rgb(196,30,58)] hover:bg-rose-700 text-white text-xs font-bold shadow-lg shadow-rose-950/40 transition-all hover:scale-105"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-rose-300" />
+                    <span>AI Tools</span>
+                  </Link>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "nav-link text-white",
+                      isActive(item.href) && "opacity-100"
+                    )}
+                    data-active={isActive(item.href) ? "true" : "false"}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
             </nav>
             <Link
               href="/search"

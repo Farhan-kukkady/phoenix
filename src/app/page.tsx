@@ -18,6 +18,8 @@ import {
 import siteContent from "@/data/site-content.json";
 import { productRepository } from "@/lib/repositories/product-repository";
 import { ProductCard } from "@/components/catalog/ProductCard";
+import { HeroCarousel } from "@/components/home/HeroCarousel";
+import { StatsStrip } from "@/components/home/StatsStrip";
 
 export const metadata: Metadata = {
   title: "Phoenix Colour Technologies | Precision, Performance & Intelligent Manufacturing",
@@ -33,94 +35,17 @@ export default async function HomePage() {
   const withImages = allProducts.filter((p) => !p.images[0].includes("placeholder"));
   const featuredProducts = withImages.length >= 3 ? withImages.slice(0, 3) : allProducts.slice(0, 3);
 
-  const heroSlide = hero.slides[0];
-
   return (
     <div className="flex flex-col">
       {/* =========================================================
-          HERO SECTION (matching ref/hero-header.png)
+          HERO CAROUSEL WITH ROTATING HEADLINE WORD
           ========================================================= */}
-      <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center bg-[rgb(15,23,66)] overflow-hidden">
-        {/* Full-bleed background with dark overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-35 mix-blend-luminosity scale-105 transition-transform duration-1000"
-          style={{ backgroundImage: `url(${heroSlide.image})` }}
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-[rgb(15,23,66)] via-[rgb(15,23,66)/0.75] to-[rgb(15,23,66)/0.9]"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(196,30,58,0.25)_0%,transparent_70%)]"
-          aria-hidden="true"
-        />
-
-        <div className="container-wide relative z-10 text-center py-24 sm:py-32">
-          {/* Tagline Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-semibold text-white/90 mb-6 tracking-wide shadow-lg">
-            <span className="w-2 h-2 rounded-full bg-[rgb(196,30,58)] animate-pulse" />
-            <span>Precision • Performance • Intelligent Manufacturing</span>
-          </div>
-
-          {/* Gradient Headline (matching ref/hero-header.png) */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-[1.08] max-w-5xl mx-auto drop-shadow-md">
-            <span>{heroSlide.headline} </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-400 to-amber-300">
-              {heroSlide.headlineGradient}
-            </span>
-          </h1>
-
-          {/* Subtext */}
-          <p className="mt-6 text-base sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed font-normal">
-            {heroSlide.subtext}
-          </p>
-
-          {/* Outlined CTA Button with gradient border (matching ref/hero-header.png) */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href={heroSlide.ctaHref}
-              className="btn-primary text-sm px-8 py-3.5 shadow-xl shadow-red-950/40"
-            >
-              {heroSlide.ctaLabel}
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </Link>
-
-            <Link
-              href="/contact"
-              className="btn-outline text-sm px-8 py-3.5"
-            >
-              Contact Us
-            </Link>
-          </div>
-
-          {/* Founded marker */}
-          <p className="mt-12 text-xs text-white/40 tracking-widest uppercase">
-            Founded in Dubai in 2007 • Serving UAE, Saudi Arabia, GCC & Africa
-          </p>
-        </div>
-      </section>
+      <HeroCarousel />
 
       {/* =========================================================
-          ANIMATED STATS STRIP (Real stats requirement)
+          JACKPOT SLOT MACHINE REEL STATS STRIP
           ========================================================= */}
-      <section className="bg-[rgb(15,23,66)] border-y border-white/10 py-10">
-        <div className="container-wide">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {company.stats.map((stat, idx) => (
-              <div key={idx} className="space-y-1">
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-400 to-amber-300">
-                  {stat.value}
-                </div>
-                <div className="text-xs sm:text-sm font-bold text-white tracking-wide uppercase">
-                  {stat.label}
-                </div>
-                <div className="text-[11px] text-white/50">{stat.description}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <StatsStrip />
 
       {/* =========================================================
           BRAND LOGO STRIP (21 Partners)

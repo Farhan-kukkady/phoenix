@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
+import { SlotCounter } from "@/components/ui/SlotCounter";
 
 type Currency = "USD" | "AED";
 
@@ -383,9 +384,12 @@ export function RoiCalculator() {
             </span>
 
             <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white">
-                {currencySymbol}
-                {Math.round(totalAnnualSavingsCurrent).toLocaleString()}
+              <span className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white flex items-center">
+                <SlotCounter
+                  value={Math.round(totalAnnualSavingsCurrent).toLocaleString()}
+                  prefix={currencySymbol}
+                  duration={1.2}
+                />
               </span>
               <span className="text-white/60 text-sm font-semibold">/ year</span>
             </div>
@@ -421,7 +425,7 @@ export function RoiCalculator() {
                 Recovered Capacity
               </span>
               <span className="text-xl font-black text-slate-900 block mt-0.5">
-                {annualHoursSaved.toLocaleString()} hrs
+                <SlotCounter value={annualHoursSaved.toLocaleString()} suffix=" hrs" />
               </span>
               <span className="text-[11px] text-slate-500 mt-1 block">
                 Extra billable press uptime
@@ -437,7 +441,7 @@ export function RoiCalculator() {
                 Substrate Saved
               </span>
               <span className="text-xl font-black text-slate-900 block mt-0.5">
-                {annualUnitsSaved.toLocaleString()}
+                <SlotCounter value={annualUnitsSaved.toLocaleString()} />
               </span>
               <span className="text-[11px] text-slate-500 mt-1 block capitalize">
                 {selectedPress.wasteUnit} diverted
@@ -453,8 +457,10 @@ export function RoiCalculator() {
                 Direct Scrap Saved
               </span>
               <span className="text-xl font-black text-slate-900 block mt-0.5">
-                {currencySymbol}
-                {Math.round(annualWasteSavingsUSD * rateMultiplier).toLocaleString()}
+                <SlotCounter
+                  value={Math.round(annualWasteSavingsUSD * rateMultiplier).toLocaleString()}
+                  prefix={currencySymbol}
+                />
               </span>
               <span className="text-[11px] text-slate-500 mt-1 block">
                 Raw material bottom-line

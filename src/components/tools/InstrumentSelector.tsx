@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Layers,
   Factory,
@@ -353,9 +354,17 @@ export function InstrumentSelector() {
       <div className="p-6 sm:p-10">
         {!showResult ? (
           <div>
-            {/* Step 1: Substrate */}
-            {step === 1 && (
-              <div className="space-y-6">
+            <AnimatePresence mode="wait">
+              {/* Step 1: Substrate */}
+              {step === 1 && (
+                <motion.div
+                  key="step-1"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  className="space-y-6"
+                >
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
                     <span className="w-7 h-7 rounded-full bg-[rgb(196,30,58)] text-white text-xs flex items-center justify-center font-bold">
@@ -409,12 +418,19 @@ export function InstrumentSelector() {
                     );
                   })}
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* Step 2: Environment */}
             {step === 2 && (
-              <div className="space-y-6">
+              <motion.div
+                key="step-2"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.28, ease: "easeOut" }}
+                className="space-y-6"
+              >
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
                     <span className="w-7 h-7 rounded-full bg-[rgb(196,30,58)] text-white text-xs flex items-center justify-center font-bold">
@@ -468,12 +484,19 @@ export function InstrumentSelector() {
                     );
                   })}
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* Step 3: Quality Objective */}
             {step === 3 && (
-              <div className="space-y-6">
+              <motion.div
+                key="step-3"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.28, ease: "easeOut" }}
+                className="space-y-6"
+              >
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
                     <span className="w-7 h-7 rounded-full bg-[rgb(196,30,58)] text-white text-xs flex items-center justify-center font-bold">
@@ -527,8 +550,9 @@ export function InstrumentSelector() {
                     );
                   })}
                 </div>
-              </div>
+              </motion.div>
             )}
+            </AnimatePresence>
 
             {/* Stepper Navigation buttons */}
             <div className="mt-8 pt-6 border-t border-slate-200 flex items-center justify-between">
@@ -558,7 +582,12 @@ export function InstrumentSelector() {
           /* =========================================================
              RESULT SCREEN
              ========================================================= */
-          <div className="space-y-8 animate-in fade-in duration-500">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="space-y-8"
+          >
             {/* Top match notification */}
             <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-between flex-wrap gap-3">
               <div className="flex items-center gap-3">
@@ -716,7 +745,7 @@ export function InstrumentSelector() {
                 Or Book an On-Site Engineering Audit in UAE & GCC →
               </Link>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>
